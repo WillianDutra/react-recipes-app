@@ -9,9 +9,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(
-    <Provider>
-      <App />
-    </Provider>,
+    <BrowserRouter>
+      <Provider>
+        <App />
+      </Provider>
+    </BrowserRouter>,
   );
 
 // If you want your app to work offline and load faster, you can change
