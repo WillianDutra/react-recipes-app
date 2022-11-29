@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import Provider from './context/Provider';
 import * as serviceWorker from './serviceWorker';
@@ -8,9 +9,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(
-    <Provider>
-      <App />
-    </Provider>,
+    <BrowserRouter>
+      <Provider>
+        <App />
+      </Provider>
+    </BrowserRouter>,
   );
 
 // If you want your app to work offline and load faster, you can change
