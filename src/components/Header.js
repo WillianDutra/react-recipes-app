@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
 function Header() {
   const handleHeader = () => {
-    // const teste = location.pathname;
     switch (window.location.pathname) {
     case '/meals':
       return (
@@ -38,14 +38,16 @@ function Header() {
       return null;
     }
   };
-  // const { location: { pathname } } = props;
+
   return (
     <div>
-      <img
-        data-testid="profile-top-btn"
-        src={ profile }
-        alt="Profile"
-      />
+      <Link to="/profile">
+        <img
+          data-testid="profile-top-btn"
+          src={ profile }
+          alt="Profile"
+        />
+      </Link>
       { handleHeader()}
     </div>
   );
