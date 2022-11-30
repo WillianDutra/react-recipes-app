@@ -6,17 +6,20 @@ export default function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isSearching, setIsSearching] = useState(false);
+
   const value = useMemo(() => ({
     email,
     setEmail,
     password,
     setPassword,
-  }), [email, password]);
+    isSearching,
+    setIsSearching,
+  }), [email, isSearching, password]);
+
   return (
     <recipesContext.Provider value={ value }>
-
       { children }
-
     </recipesContext.Provider>
   );
 }
