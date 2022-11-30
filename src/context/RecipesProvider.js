@@ -1,26 +1,30 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import recipesContext from './recipesContext';
+import RecipesContext from './RecipesContext';
 
-export default function Provider({ children }) {
+export default function RecipesProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const value = useMemo(() => ({
     email,
     setEmail,
     password,
     setPassword,
-  }), [email, password]);
+    isDisabled,
+    setIsDisabled,
+  }), [isDisabled, email, password]);
+
   return (
-    <recipesContext.Provider value={ value }>
+    <RecipesContext.Provider value={ value }>
 
       { children }
 
-    </recipesContext.Provider>
+    </RecipesContext.Provider>
   );
 }
 
-Provider.propTypes = {
+RecipesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
