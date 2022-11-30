@@ -5,6 +5,7 @@ import Footer from './Footer';
 
 function Meals() {
   const { mealsRequest } = useContext(RecipesContext);
+  console.log(mealsRequest);
   const num = 12;
 
   return (

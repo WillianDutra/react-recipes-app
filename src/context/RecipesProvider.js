@@ -19,8 +19,12 @@ export default function RecipesProvider({ children }) {
   const [drinksRequest, setDrinksRequest] = useState([]);
 
   useEffect(() => {
-    setMealsRequest(requestMealsAPI());
-    setDrinksRequest(requestDrinksAPI());
+    const getData = async () => {
+      setMealsRequest(await requestMealsAPI());
+      setDrinksRequest(await requestDrinksAPI());
+    };
+
+    getData();
   }, []);
 
   const value = useMemo(() => ({
