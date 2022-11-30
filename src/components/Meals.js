@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import recipesContext from '../context/recipesContext';
+import RecipesContext from '../context/RecipesContext';
 import Header from './Header';
+import Footer from './Footer';
 
 function Meals() {
-  const { mealsRequest } = useContext(recipesContext);
+  const { mealsRequest } = useContext(RecipesContext);
   const num = 12;
 
   return (
@@ -26,6 +27,7 @@ function Meals() {
           </p>
         </div>
       ))}
+      <Footer />
     </main>
   );
 }

@@ -1,13 +1,30 @@
 import { useContext } from 'react';
-import recipesContext from '../context/recipesContext';
+import RecipesContext from '../context/RecipesContext';
+import { requestIngredient, requestFirstLetter,
+  requestName } from '../services/requestAPI';
 
 export default function SearchBar() {
   const {
     searchInput,
     setSearchInput,
-    // radioInput,
+    radioInput,
     setRadioInput,
-  } = useContext(recipesContext);
+  } = useContext(RecipesContext);
+
+  const haldleClick = () => {
+    if (radioInput === 'Ingredient') {
+      requestIngredient(searchInput);
+    }
+    if (radioInput === 'Name') {
+      requestName(searchInput);
+    }
+    if (radioInput === 'First letter') {
+      if (searchInput.length > 1) {
+        return global.alert('Your search must have only 1 (one) character');
+      }
+      requestFirstLetter(searchInput);
+    }
+  };
 
   return (
     <div>
@@ -62,6 +79,7 @@ export default function SearchBar() {
       <button
         type="button"
         data-testid="exec-search-btn"
+        onClick={ haldleClick }
       >
         Search
       </button>
