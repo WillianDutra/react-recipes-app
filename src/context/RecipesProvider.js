@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import recipesContext from './recipesContext';
+import RecipesContext from './RecipesContext';
 
-export default function Provider({ children }) {
+export default function RecipesProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
 
   // Estados da pesquisa do Header
   const [isSearching, setIsSearching] = useState(false);
@@ -16,21 +17,23 @@ export default function Provider({ children }) {
     setEmail,
     password,
     setPassword,
+    isDisabled,
+    setIsDisabled,
     isSearching,
     setIsSearching,
     searchInput,
     setSearchInput,
     radioInput,
     setRadioInput,
-  }), [email, isSearching, password, radioInput, searchInput]);
+  }), [isDisabled, email, password, isSearching, radioInput, searchInput]);
 
   return (
-    <recipesContext.Provider value={ value }>
+    <RecipesContext.Provider value={ value }>
       { children }
-    </recipesContext.Provider>
+    </RecipesContext.Provider>
   );
 }
 
-Provider.propTypes = {
+RecipesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import recipesContext from '../context/recipesContext';
+import RecipesContext from '../context/RecipesContext';
 import { requestIngredient, requestFirstLetter,
   requestName } from '../services/requestAPI';
 

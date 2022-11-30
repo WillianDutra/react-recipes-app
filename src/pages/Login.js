@@ -1,8 +1,30 @@
-import React, { useContext } from 'react';
-import recipesContext from '../context/recipesContext';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
+import validationInputs from '../utils/services';
 
 export default function Login() {
-  const { email, setEmail, password, setPassword } = useContext(recipesContext);
+  const {
+    isDisabled,
+    setIsDisabled,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(RecipesContext);
+
+  useEffect(() => {
+    const validationGeneral = validationInputs(email, password);
+
+    if (validationGeneral) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [email, password, isDisabled, setIsDisabled]);
+
+  const handleSubmit = () => localStorage.setItem('user', JSON.stringify({ email }));
+
   return (
     <>
       <h1>OI</h1>
@@ -28,13 +50,17 @@ export default function Login() {
           />
         </label>
       </form>
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-      >
-        Enter
+      <Link to="/meals">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ isDisabled }
+          onClick={ handleSubmit }
+        >
+          Enter
 
-      </button>
+        </button>
+      </Link>
     </>
   );
 }

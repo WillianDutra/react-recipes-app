@@ -3,15 +3,21 @@ import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
-import recipesContext from '../context/recipesContext';
+import RecipesContext from '../context/RecipesContext';
 
 function Header() {
-  const { isSearching, setIsSearching } = useContext(recipesContext);
+  const { isSearching, setIsSearching } = useContext(RecipesContext);
   const handleHeader = () => {
     switch (window.location.pathname) {
     case '/meals':
       return (
         <>
+          <h1 data-testid="page-title">Meals</h1>
+          <img
+            data-testid="search-top-btn"
+            src={ search }
+            alt="search icon"
+          />
           <button
             type="button"
             onClick={ () => setIsSearching(!isSearching) }
@@ -29,6 +35,7 @@ function Header() {
     case '/drinks':
       return (
         <>
+          <h1 data-testid="page-title">Drinks</h1>
           <img
             data-testid="search-top-btn"
             src={ search }

@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
-
 import { Route, Switch } from 'react-router-dom';
-import Login from './pages/Login';
-import Meals from './components/Meals';
 import Drinks from './components/Drinks';
 import DoneRecipes from './components/DoneRecipes';
 import FavoritesRecipes from './components/FavoritesRecipes';
 import Profile from './components/Profile';
+import Login from './pages/Login';
+import Meals from './components/Meals';
+// import Provider from './context/Provider';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
