@@ -7,6 +7,11 @@ export default function RecipesProvider({ children }) {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
+  // Estados da pesquisa do Header
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [radioInput, setRadioInput] = useState('');
+
   const value = useMemo(() => ({
     email,
     setEmail,
@@ -14,13 +19,17 @@ export default function RecipesProvider({ children }) {
     setPassword,
     isDisabled,
     setIsDisabled,
-  }), [isDisabled, email, password]);
+    isSearching,
+    setIsSearching,
+    searchInput,
+    setSearchInput,
+    radioInput,
+    setRadioInput,
+  }), [isDisabled, email, password, isSearching, radioInput, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>
-
       { children }
-
     </RecipesContext.Provider>
   );
 }

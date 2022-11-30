@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
+import RecipesContext from '../context/RecipesContext';
 
 function Header() {
+  const { isSearching, setIsSearching } = useContext(RecipesContext);
   const handleHeader = () => {
-    // const teste = location.pathname;
     switch (window.location.pathname) {
     case '/meals':
       return (
@@ -15,6 +18,18 @@ function Header() {
             src={ search }
             alt="search icon"
           />
+          <button
+            type="button"
+            onClick={ () => setIsSearching(!isSearching) }
+          >
+            <img
+              data-testid="search-top-btn"
+              name="search-btn"
+              src={ search }
+              alt="search icon"
+            />
+          </button>
+          <h1 data-testid="page-title">Meals</h1>
         </>
       );
     case '/drinks':
@@ -26,6 +41,7 @@ function Header() {
             src={ search }
             alt="search icon"
           />
+          <h1 data-testid="page-title">Drinks</h1>
         </>
       );
     case '/profile':
@@ -38,16 +54,21 @@ function Header() {
       return null;
     }
   };
-  // const { location: { pathname } } = props;
+
   return (
-    <div>
-      <img
-        data-testid="profile-top-btn"
-        src={ profile }
-        alt="Profile"
-      />
-      { handleHeader()}
-    </div>
+    <>
+      <header>
+        <Link to="/profile">
+          <img
+            data-testid="profile-top-btn"
+            src={ profile }
+            alt="Profile"
+          />
+        </Link>
+        { handleHeader() }
+      </header>
+      { isSearching && <SearchBar />}
+    </>
   );
 }
 

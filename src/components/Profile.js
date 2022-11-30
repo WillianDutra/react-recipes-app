@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-function Meals() {
+function Profile() {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ function Meals() {
   );
 }
 
-export default Meals;
+export default Profile;
