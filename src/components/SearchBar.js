@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import recipesContext from '../context/recipesContext';
+import RecipesContext from '../context/RecipesContext';
 
 export default function SearchBar() {
   const {
@@ -7,7 +7,7 @@ export default function SearchBar() {
     setSearchInput,
     // radioInput,
     // setRadioInput,
-  } = useContext(recipesContext);
+  } = useContext(RecipesContext);
 
   return (
     <div>
