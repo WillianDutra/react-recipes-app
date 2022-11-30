@@ -6,7 +6,7 @@ export default function SearchBar() {
     searchInput,
     setSearchInput,
     // radioInput,
-    // setRadioInput,
+    setRadioInput,
   } = useContext(recipesContext);
 
   return (
@@ -24,10 +24,12 @@ export default function SearchBar() {
         htmlFor="ingrediente-radio"
       >
         <input
-          type="radio"
+          data-testid="ingredient-search-radio"
           id="ingrediente-radio"
           name="radio-input"
-          data-testid="ingredient-search-radio"
+          type="radio"
+          value="Ingredient"
+          onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         Ingredient
       </label>
@@ -35,10 +37,12 @@ export default function SearchBar() {
         htmlFor="name-radio"
       >
         <input
-          type="radio"
+          data-testid="name-search-radio"
           id="name-radio"
           name="radio-input"
-          data-testid="name-search-radio"
+          type="radio"
+          value="Name"
+          onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         Name
       </label>
@@ -46,10 +50,12 @@ export default function SearchBar() {
         htmlFor="first-letter-radio"
       >
         <input
-          type="radio"
+          data-testid="first-letter-search-radio"
           id="first-letter-radio"
           name="radio-input"
-          data-testid="first-letter-search-radio"
+          type="radio"
+          value="First letter"
+          onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         First letter
       </label>
