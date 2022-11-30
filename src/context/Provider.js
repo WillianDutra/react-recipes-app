@@ -6,7 +6,10 @@ export default function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Estados da pesquisa do Header
   const [isSearching, setIsSearching] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [radioInput, setRadioInput] = useState('');
 
   const value = useMemo(() => ({
     email,
@@ -15,7 +18,11 @@ export default function Provider({ children }) {
     setPassword,
     isSearching,
     setIsSearching,
-  }), [email, isSearching, password]);
+    searchInput,
+    setSearchInput,
+    radioInput,
+    setRadioInput,
+  }), [email, isSearching, password, radioInput, searchInput]);
 
   return (
     <recipesContext.Provider value={ value }>
