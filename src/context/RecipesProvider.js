@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
@@ -11,6 +11,27 @@ export default function RecipesProvider({ children }) {
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [radioInput, setRadioInput] = useState('');
+
+  // Estado da primeira requisição
+  const [mealsRequest, setMealsRequest] = useState([]);
+  const [drinksRequest, setDrinksRequest] = useState([]);
+
+  useEffect(() => {
+    const requestMealsAPI = async () => {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const result = await response.json();
+      setMealsRequest(result.meals);
+    };
+
+    const requestDrinksAPI = async () => {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const result = await response.json();
+      setDrinksRequest(result.drinks);
+    };
+
+    requestMealsAPI();
+    requestDrinksAPI();
+  }, []);
 
   const value = useMemo(() => ({
     email,
@@ -25,7 +46,10 @@ export default function RecipesProvider({ children }) {
     setSearchInput,
     radioInput,
     setRadioInput,
-  }), [isDisabled, email, password, isSearching, radioInput, searchInput]);
+    mealsRequest,
+    drinksRequest,
+  }), [drinksRequest, email, isDisabled,
+    isSearching, mealsRequest, password, radioInput, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>

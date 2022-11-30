@@ -13,11 +13,6 @@ function Header() {
       return (
         <>
           <h1 data-testid="page-title">Meals</h1>
-          <img
-            data-testid="search-top-btn"
-            src={ search }
-            alt="search icon"
-          />
           <button
             type="button"
             onClick={ () => setIsSearching(!isSearching) }
@@ -29,19 +24,23 @@ function Header() {
               alt="search icon"
             />
           </button>
-          <h1 data-testid="page-title">Meals</h1>
         </>
       );
     case '/drinks':
       return (
         <>
           <h1 data-testid="page-title">Drinks</h1>
-          <img
-            data-testid="search-top-btn"
-            src={ search }
-            alt="search icon"
-          />
-          <h1 data-testid="page-title">Drinks</h1>
+          <button
+            type="button"
+            onClick={ () => setIsSearching(!isSearching) }
+          >
+            <img
+              data-testid="search-top-btn"
+              name="search-btn"
+              src={ search }
+              alt="search icon"
+            />
+          </button>
         </>
       );
     case '/profile':
