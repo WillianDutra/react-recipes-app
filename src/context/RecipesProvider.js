@@ -2,6 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
+import { requestMealsAPI, requestDrinksAPI } from '../services/requestAPI';
+
 export default function RecipesProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,20 +19,8 @@ export default function RecipesProvider({ children }) {
   const [drinksRequest, setDrinksRequest] = useState([]);
 
   useEffect(() => {
-    const requestMealsAPI = async () => {
-      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-      const result = await response.json();
-      setMealsRequest(result.meals);
-    };
-
-    const requestDrinksAPI = async () => {
-      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      const result = await response.json();
-      setDrinksRequest(result.drinks);
-    };
-
-    requestMealsAPI();
-    requestDrinksAPI();
+    setMealsRequest(requestMealsAPI());
+    setDrinksRequest(requestDrinksAPI());
   }, []);
 
   const value = useMemo(() => ({
