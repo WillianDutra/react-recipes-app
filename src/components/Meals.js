@@ -1,44 +1,69 @@
 import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
+import { getMealsByCategory } from '../services/requestAPI';
 
 import '../styles/card.css';
 
 function Meals() {
-  const { mealsRequest, mealsFilters } = useContext(RecipesContext);
+  const {
+    mealsRequest, mealsFilters,
+    mealsByCategory, setMealsByCategory,
+    categoryActive, setCategoryActive,
+  } = useContext(RecipesContext);
+
   const recipes = 12;
   const filters = 5;
 
+  const getRecipes = async (filter) => {
+    if (categoryActive.category === filter) {
+      setCategoryActive({ active: false, category: '' });
+    } if (categoryActive.category !== filter) {
+      // console.log(await getMealsByCategory(filter));
+      setMealsByCategory(await getMealsByCategory(filter));
+      setCategoryActive({ active: true, category: filter });
+    }
+  };
+
   return (
     <main>
-      <div>
+      <div className="filter-buttons">
         { mealsFilters.slice(0, filters).map((ele) => (
           <button
             key={ ele.strCategory }
             data-testid={ `${ele.strCategory}-category-filter` }
             type="button"
+            onClick={ ({ target: { innerText } }) => getRecipes(innerText) }
           >
             {ele.strCategory}
           </button>
         ))}
-      </div>
-      { mealsRequest.slice(0, recipes).map((ele, index) => (
-        <div
-          key={ ele.idMeal }
-          className="card"
-          data-testid={ `${index}-recipe-card` }
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setCategoryActive({ active: false, category: '' }) }
         >
-          <img
-            src={ ele.strMealThumb }
-            alt={ ele.strMeal }
-            data-testid={ `${index}-card-img` }
-          />
-          <p
-            data-testid={ `${index}-card-name` }
+          All
+        </button>
+      </div>
+      { (categoryActive.active ? mealsByCategory : mealsRequest)
+        .slice(0, recipes).map((ele, index) => (
+          <div
+            key={ ele.idMeal }
+            className="card"
+            data-testid={ `${index}-recipe-card` }
           >
-            { ele.strMeal }
-          </p>
-        </div>
-      ))}
+            <img
+              src={ ele.strMealThumb }
+              alt={ ele.strMeal }
+              data-testid={ `${index}-card-img` }
+            />
+            <p
+              data-testid={ `${index}-card-name` }
+            >
+              { ele.strMeal }
+            </p>
+          </div>
+        ))}
     </main>
   );
 }
