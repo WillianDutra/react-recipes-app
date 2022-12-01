@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import { getMealsByCategory } from '../services/requestAPI';
 
@@ -18,7 +19,6 @@ function Meals() {
     if (categoryActive.category === filter) {
       setCategoryActive({ active: false, category: '' });
     } if (categoryActive.category !== filter) {
-      // console.log(await getMealsByCategory(filter));
       setMealsByCategory(await getMealsByCategory(filter));
       setCategoryActive({ active: true, category: filter });
     }
@@ -52,16 +52,18 @@ function Meals() {
             className="card"
             data-testid={ `${index}-recipe-card` }
           >
-            <img
-              src={ ele.strMealThumb }
-              alt={ ele.strMeal }
-              data-testid={ `${index}-card-img` }
-            />
-            <p
-              data-testid={ `${index}-card-name` }
-            >
-              { ele.strMeal }
-            </p>
+            <Link to={ `/meals/${ele.idMeal}` }>
+              <img
+                src={ ele.strMealThumb }
+                alt={ ele.strMeal }
+                data-testid={ `${index}-card-img` }
+              />
+              <p
+                data-testid={ `${index}-card-name` }
+              >
+                { ele.strMeal }
+              </p>
+            </Link>
           </div>
         ))}
     </main>
