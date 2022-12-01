@@ -22,6 +22,17 @@ function Header() {
             src={ search }
             alt="search icon"
           />
+          <button
+            type="button"
+            onClick={ () => setIsSearching(!isSearching) }
+          >
+            <img
+              data-testid="search-top-btn"
+              name="search-btn"
+              src={ search }
+              alt="search icon"
+            />
+          </button>
         </>
       );
     case '/drinks':
@@ -33,6 +44,17 @@ function Header() {
             src={ search }
             alt="search icon"
           />
+          <button
+            type="button"
+            onClick={ () => setIsSearching(!isSearching) }
+          >
+            <img
+              data-testid="search-top-btn"
+              name="search-btn"
+              src={ search }
+              alt="search icon"
+            />
+          </button>
         </>
       );
     case '/profile':

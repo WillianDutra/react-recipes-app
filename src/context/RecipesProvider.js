@@ -1,6 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
+
+import { requestMealsAPI, requestDrinksAPI } from '../services/requestAPI';
 
 export default function RecipesProvider({ children }) {
   const [email, setEmail] = useState('');
@@ -11,6 +13,19 @@ export default function RecipesProvider({ children }) {
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [radioInput, setRadioInput] = useState('');
+
+  // Estado da primeira requisição
+  const [mealsRequest, setMealsRequest] = useState([]);
+  const [drinksRequest, setDrinksRequest] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      setMealsRequest(await requestMealsAPI());
+      setDrinksRequest(await requestDrinksAPI());
+    };
+
+    getData();
+  }, []);
 
   const value = useMemo(() => ({
     email,
@@ -25,7 +40,10 @@ export default function RecipesProvider({ children }) {
     setSearchInput,
     radioInput,
     setRadioInput,
-  }), [isDisabled, email, password, isSearching, radioInput, searchInput]);
+    mealsRequest,
+    drinksRequest,
+  }), [drinksRequest, email, isDisabled,
+    isSearching, mealsRequest, password, radioInput, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>
