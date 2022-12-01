@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../utils/renderWithRouter';
 import RecipesProvider from '../context/RecipesProvider';
-import Drinks from '../components/Drinks';
-import Meals from '../components/Meals';
 
 describe('Testa a renderização do componente Header', () => {
   it('Verifica se o título correto aparece na tela da rota meals', () => {
@@ -22,7 +20,12 @@ describe('Testa a renderização do componente Header', () => {
   });
 
   it('Verifica se a barra de pesquisa aparece na tela da rota meals', () => {
-    renderWithRouter(<RecipesProvider><Meals /></RecipesProvider>);
+    const { history } = renderWithRouter(
+      <RecipesProvider><App /></RecipesProvider>,
+    );
+    act(() => {
+      history.push('/meals');
+    });
 
     const searchIcon = screen.getByAltText('search icon');
     userEvent.click(searchIcon);
@@ -46,7 +49,12 @@ describe('Testa a renderização do componente Header', () => {
   });
 
   it('Verifica se a barra de pesquisa aparece na tela da rota drinks', () => {
-    renderWithRouter(<RecipesProvider><Drinks /></RecipesProvider>);
+    const { history } = renderWithRouter(
+      <RecipesProvider><App /></RecipesProvider>,
+    );
+    act(() => {
+      history.push('/drinks');
+    });
 
     const searchIcon = screen.getByAltText('search icon');
     userEvent.click(searchIcon);
