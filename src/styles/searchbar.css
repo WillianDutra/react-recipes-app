@@ -7,11 +7,3 @@ label {
   font-weight: 500;
   width: 100%;
 }
-
-#search-input {
-  border: 1px solid black;
-  border-radius: 0.4em;
-  margin: 10px 0;
-  padding: 0.5em;
-  width: 300px;
-}
