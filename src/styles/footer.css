@@ -1,5 +1,5 @@
 footer {
-  background-color: #fff;
+  background-color: white;
   border-top: 2px solid black;
   display: flex;
   justify-content: space-between;
@@ -7,6 +7,6 @@ footer {
 }
 
 footer a {
-  padding: 4px;
   margin: 0 20px;
+  padding: 4px;
 }
