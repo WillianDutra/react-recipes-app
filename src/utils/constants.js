@@ -9,4 +9,9 @@ export const testIds = {
   emailInput: 'email-input',
   passwordInput: 'password-input',
   loginSubmitButton: 'login-submit-btn',
+  profileButton: 'profile-top-btn',
+  profileDoneRecipes: 'profile-done-btn',
+  profileEmail: 'profile-email',
+  profileFavorites: 'profile-favorite-btn',
+  profileLogout: 'profile-logout-btn',
 };
