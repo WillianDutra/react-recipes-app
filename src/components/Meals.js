@@ -1,21 +1,29 @@
 import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
-import Header from './Header';
-import Footer from './Footer';
 
 import '../styles/card.css';
 
 function Meals() {
-  const { mealsRequest } = useContext(RecipesContext);
-  console.log(mealsRequest);
-  const num = 12;
+  const { mealsRequest, mealsFilters } = useContext(RecipesContext);
+  const recipes = 12;
+  const filters = 5;
 
   return (
     <main>
-      <Header />
-      { mealsRequest.slice(0, num).map((ele, index) => (
+      <div>
+        { mealsFilters.slice(0, filters).map((ele) => (
+          <button
+            key={ ele.strCategory }
+            data-testid={ `${ele.strCategory}-category-filter` }
+            type="button"
+          >
+            {ele.strCategory}
+          </button>
+        ))}
+      </div>
+      { mealsRequest.slice(0, recipes).map((ele, index) => (
         <div
-          key={ index }
+          key={ ele.idMeal }
           className="card"
           data-testid={ `${index}-recipe-card` }
         >
@@ -31,7 +39,6 @@ function Meals() {
           </p>
         </div>
       ))}
-      <Footer />
     </main>
   );
 }
