@@ -55,3 +55,10 @@ export const getDrinksByCategory = async (category) => {
   const result = await response.json();
   return result.drinks;
 };
+
+// Requisição padrão
+export const getRecipeData = async (url) => {
+  const response = await fetch(url);
+  const result = await response.json();
+  return result;
+};
