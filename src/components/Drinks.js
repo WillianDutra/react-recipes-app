@@ -1,20 +1,29 @@
 import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
-import Header from './Header';
-import Footer from './Footer';
 
 import '../styles/card.css';
 
 function Drinks() {
-  const { drinksRequest } = useContext(RecipesContext);
-  const num = 12;
+  const { drinksRequest, drinksFilters } = useContext(RecipesContext);
+  const recipes = 12;
+  const filters = 5;
 
   return (
     <main>
-      <Header />
-      { drinksRequest.slice(0, num).map((ele, index) => (
+      <div>
+        { drinksFilters.slice(0, filters).map((ele) => (
+          <button
+            key={ ele.strCategory }
+            data-testid={ `${ele.strCategory}-category-filter` }
+            type="button"
+          >
+            {ele.strCategory}
+          </button>
+        ))}
+      </div>
+      { drinksRequest.slice(0, recipes).map((ele, index) => (
         <div
-          key={ index }
+          key={ ele.idDrink }
           className="card"
           data-testid={ `${index}-recipe-card` }
         >
@@ -30,7 +39,6 @@ function Drinks() {
           </p>
         </div>
       ))}
-      <Footer />
     </main>
   );
 }
