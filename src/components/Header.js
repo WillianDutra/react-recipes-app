@@ -5,6 +5,8 @@ import search from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import RecipesContext from '../context/RecipesContext';
 
+import '../styles/header.css';
+
 function Header() {
   const { isSearching, setIsSearching } = useContext(RecipesContext);
   const handleHeader = () => {
@@ -57,6 +59,7 @@ function Header() {
   return (
     <>
       <header>
+        { handleHeader() }
         <Link to="/profile">
           <img
             data-testid="profile-top-btn"
@@ -64,7 +67,6 @@ function Header() {
             alt="Profile"
           />
         </Link>
-        { handleHeader() }
       </header>
       { isSearching && <SearchBar />}
     </>

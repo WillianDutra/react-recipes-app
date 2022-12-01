@@ -3,6 +3,8 @@ import RecipesContext from '../context/RecipesContext';
 import { requestIngredient, requestFirstLetter,
   requestName } from '../services/requestAPI';
 
+import '../styles/searchbar.css';
+
 export default function SearchBar() {
   const {
     searchInput,
@@ -27,12 +29,13 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <label htmlFor="search-input">
         <input
           data-testid="search-input"
           type="text"
           name="search-input"
+          id="search-input"
           onChange={ ({ target: { value } }) => setSearchInput(value) }
           value={ searchInput }
         />
