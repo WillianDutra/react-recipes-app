@@ -1,18 +1,27 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
-import SearchBar from './SearchBar';
-import RecipesContext from '../context/RecipesContext';
 
 function Header() {
-  const { isSearching, setIsSearching } = useContext(RecipesContext);
-  const handleHeader = () => {
-    switch (window.location.pathname) {
+  // Referência Consultada: https://surajsharma.net/blog/current-url-in-react
+  const usePathname = () => {
+    const location = useLocation();
+    return location.pathname;
+  };
+
+  const useHandleHeader = () => {
+    const locComponent = usePathname();
+    switch (locComponent) {
     case '/meals':
       return (
         <>
           <h1 data-testid="page-title">Meals</h1>
+          <img
+            data-testid="search-top-btn"
+            src={ search }
+            alt="search icon"
+          />
           <button
             type="button"
             onClick={ () => setIsSearching(!isSearching) }
@@ -30,6 +39,11 @@ function Header() {
       return (
         <>
           <h1 data-testid="page-title">Drinks</h1>
+          <img
+            data-testid="search-top-btn"
+            src={ search }
+            alt="search icon"
+          />
           <button
             type="button"
             onClick={ () => setIsSearching(!isSearching) }
@@ -50,24 +64,21 @@ function Header() {
     case '/done-recipes':
       return (<h1 data-testid="page-title">Done Recipes</h1>);
     default:
-      return null;
+      return (<h1>Not Found</h1>);
     }
   };
 
   return (
-    <>
-      <header>
-        <Link to="/profile">
-          <img
-            data-testid="profile-top-btn"
-            src={ profile }
-            alt="Profile"
-          />
-        </Link>
-        { handleHeader() }
-      </header>
-      { isSearching && <SearchBar />}
-    </>
+    <div>
+      <Link to="/profile">
+        <img
+          data-testid="profile-top-btn"
+          src={ profile }
+          alt="Profile"
+        />
+      </Link>
+      {useHandleHeader()}
+    </div>
   );
 }
 
