@@ -1,0 +1,25 @@
+header {
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 4px;
+  width: 100%;
+}
+
+header h1 {
+  margin: 4px 0 0;
+}
+
+header a {
+  height: 32px;
+}
+
+header button {
+  background-color: white;
+  border: transparent;
+  cursor: pointer;
+  height: 30px;
+  margin-left: 50px;
+  width: 30px;
+}

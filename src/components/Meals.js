@@ -3,6 +3,8 @@ import RecipesContext from '../context/RecipesContext';
 import Header from './Header';
 import Footer from './Footer';
 
+import '../styles/card.css';
+
 function Meals() {
   const { mealsRequest } = useContext(RecipesContext);
   console.log(mealsRequest);
@@ -14,6 +16,7 @@ function Meals() {
       { mealsRequest.slice(0, num).map((ele, index) => (
         <div
           key={ index }
+          className="card"
           data-testid={ `${index}-recipe-card` }
         >
           <img
