@@ -11,7 +11,7 @@ export const requestDrinksAPI = async () => {
   return result.drinks;
 };
 
-// Requisições de filtro
+// Requisições especificada
 export const requestIngredient = async (ingrediente) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingrediente}`);
   const results = await response.json();
@@ -28,4 +28,30 @@ export const requestFirstLetter = async (primeiraLetra) => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}`);
   const results = await response.json();
   return results;
+};
+
+// Requisição de filtros
+export const requestMealsFilters = async () => {
+  const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+  const results = await response.json();
+  return results.meals;
+};
+
+export const requestDrinksFilters = async () => {
+  const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+  const results = await response.json();
+  return results.drinks;
+};
+
+// Requisição por categoria
+export const getMealsByCategory = async (category) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+  const result = await response.json();
+  return result.meals;
+};
+
+export const getDrinksByCategory = async (category) => {
+  const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+  const result = await response.json();
+  return result.drinks;
 };

@@ -2,7 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
-import { requestMealsAPI, requestDrinksAPI } from '../services/requestAPI';
+import { requestMealsAPI, requestDrinksAPI,
+  requestMealsFilters, requestDrinksFilters } from '../services/requestAPI';
 
 export default function RecipesProvider({ children }) {
   const [email, setEmail] = useState('');
@@ -18,10 +19,21 @@ export default function RecipesProvider({ children }) {
   const [mealsRequest, setMealsRequest] = useState([]);
   const [drinksRequest, setDrinksRequest] = useState([]);
 
+  // Estado dos lista de filtros
+  const [mealsFilters, setMealsFilters] = useState([]);
+  const [drinksFilters, setDrinksFilters] = useState([]);
+
+  // Estado da requisição por categoria
+  const [mealsByCategory, setMealsByCategory] = useState([]);
+  const [drinksByCategory, setDrinksByCategory] = useState([]);
+  const [categoryActive, setCategoryActive] = useState({ active: false, category: '' });
+
   useEffect(() => {
     const getData = async () => {
       setMealsRequest(await requestMealsAPI());
       setDrinksRequest(await requestDrinksAPI());
+      setMealsFilters(await requestMealsFilters());
+      setDrinksFilters(await requestDrinksFilters());
     };
 
     getData();
@@ -42,8 +54,18 @@ export default function RecipesProvider({ children }) {
     setRadioInput,
     mealsRequest,
     drinksRequest,
-  }), [drinksRequest, email, isDisabled,
-    isSearching, mealsRequest, password, radioInput, searchInput]);
+    mealsFilters,
+    drinksFilters,
+    mealsByCategory,
+    setMealsByCategory,
+    drinksByCategory,
+    setDrinksByCategory,
+    categoryActive,
+    setCategoryActive,
+  }), [categoryActive, drinksByCategory, drinksFilters,
+    drinksRequest, email, isDisabled, isSearching,
+    mealsByCategory, mealsFilters, mealsRequest,
+    password, radioInput, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>

@@ -1,36 +1,71 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import Header from './Header';
-import Footer from './Footer';
+import { getDrinksByCategory } from '../services/requestAPI';
 
 import '../styles/card.css';
 
 function Drinks() {
-  const { drinksRequest } = useContext(RecipesContext);
-  const num = 12;
+  const {
+    drinksRequest, drinksFilters,
+    drinksByCategory, setDrinksByCategory,
+    categoryActive, setCategoryActive,
+  } = useContext(RecipesContext);
+
+  const recipes = 12;
+  const filters = 5;
+
+  const getRecipes = async (filter) => {
+    if (categoryActive.category === filter) {
+      setCategoryActive({ active: false, category: '' });
+    } if (categoryActive.category !== filter) {
+      setDrinksByCategory(await getDrinksByCategory(filter));
+      setCategoryActive({ active: true, category: filter });
+    }
+  };
 
   return (
     <main>
-      <Header />
-      { drinksRequest.slice(0, num).map((ele, index) => (
-        <div
-          key={ index }
-          className="card"
-          data-testid={ `${index}-recipe-card` }
-        >
-          <img
-            src={ ele.strDrinkThumb }
-            alt={ ele.strDrink }
-            data-testid={ `${index}-card-img` }
-          />
-          <p
-            data-testid={ `${index}-card-name` }
+      <div className="filter-buttons">
+        { drinksFilters.slice(0, filters).map((ele) => (
+          <button
+            key={ ele.strCategory }
+            data-testid={ `${ele.strCategory}-category-filter` }
+            type="button"
+            onClick={ ({ target: { innerText } }) => getRecipes(innerText) }
           >
-            { ele.strDrink }
-          </p>
-        </div>
-      ))}
-      <Footer />
+            {ele.strCategory}
+          </button>
+        ))}
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setCategoryActive({ active: false, category: '' }) }
+        >
+          All
+        </button>
+      </div>
+      { (categoryActive.active ? drinksByCategory : drinksRequest)
+        .slice(0, recipes).map((ele, index) => (
+          <div
+            key={ ele.idDrink }
+            className="card"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <Link to={ `/drinks/${ele.idDrink}` }>
+              <img
+                src={ ele.strDrinkThumb }
+                alt={ ele.strDrink }
+                data-testid={ `${index}-card-img` }
+              />
+              <p
+                data-testid={ `${index}-card-name` }
+              >
+                { ele.strDrink }
+              </p>
+            </Link>
+          </div>
+        ))}
     </main>
   );
 }
