@@ -19,7 +19,7 @@ function FavoriteRecipes() {
       <button type="button" data-testid="filter-by-drink-btn">
         Drinks
       </button>
-      {favorite.map((el, index) => (
+      {favorite && favorite.map((el, index) => (
         <div key={ el }>
           <img
             src={ el.image }
