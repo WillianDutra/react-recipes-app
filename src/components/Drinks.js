@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import { getDrinksByCategory } from '../services/requestAPI';
 
@@ -51,16 +52,18 @@ function Drinks() {
             className="card"
             data-testid={ `${index}-recipe-card` }
           >
-            <img
-              src={ ele.strDrinkThumb }
-              alt={ ele.strDrink }
-              data-testid={ `${index}-card-img` }
-            />
-            <p
-              data-testid={ `${index}-card-name` }
-            >
-              { ele.strDrink }
-            </p>
+            <Link to={ `/drinks/${ele.idDrink}` }>
+              <img
+                src={ ele.strDrinkThumb }
+                alt={ ele.strDrink }
+                data-testid={ `${index}-card-img` }
+              />
+              <p
+                data-testid={ `${index}-card-name` }
+              >
+                { ele.strDrink }
+              </p>
+            </Link>
           </div>
         ))}
     </main>
