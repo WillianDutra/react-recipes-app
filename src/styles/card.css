@@ -17,8 +17,8 @@ main {
 }
 
 .card a {
-  text-decoration: none;
   color: #363636;
+  text-decoration: none;
 }
 
 .card img {
