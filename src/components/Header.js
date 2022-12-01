@@ -19,23 +19,6 @@ function Header() {
   const useHandleHeader = () => {
     const locComponent = usePathname();
     switch (locComponent) {
-    case '/meals':
-      return (
-        <>
-          <h1 data-testid="page-title">Meals</h1>
-          <button
-            type="button"
-            onClick={ () => setIsSearching(!isSearching) }
-          >
-            <img
-              data-testid="search-top-btn"
-              name="search-btn"
-              src={ search }
-              alt="search icon"
-            />
-          </button>
-        </>
-      );
     case '/drinks':
       return (
         <>
@@ -60,7 +43,22 @@ function Header() {
     case '/done-recipes':
       return (<h1 data-testid="page-title">Done Recipes</h1>);
     default:
-      return (<h1>Not Found</h1>);
+      return (
+        <>
+          <h1 data-testid="page-title">Meals</h1>
+          <button
+            type="button"
+            onClick={ () => setIsSearching(!isSearching) }
+          >
+            <img
+              data-testid="search-top-btn"
+              name="search-btn"
+              src={ search }
+              alt="search icon"
+            />
+          </button>
+        </>
+      );
     }
   };
 

@@ -7,7 +7,6 @@ import '../styles/card.css';
 
 function Meals() {
   const { mealsRequest } = useContext(RecipesContext);
-  console.log(mealsRequest);
   const num = 12;
 
   return (
