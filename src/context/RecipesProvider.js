@@ -23,6 +23,14 @@ export default function RecipesProvider({ children }) {
   const [mealsFilters, setMealsFilters] = useState([]);
   const [drinksFilters, setDrinksFilters] = useState([]);
 
+  // Estado da requisição por categoria
+  const [mealsByCategory, setMealsByCategory] = useState([]);
+  const [drinksByCategory, setDrinksByCategory] = useState([]);
+  const [categoryActive, setCategoryActive] = useState({ active: false, category: '' });
+
+  // Estado da requisição da receita detalhada
+  const [recipeDetails, setRecipeDetails] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       setMealsRequest(await requestMealsAPI());
@@ -51,9 +59,19 @@ export default function RecipesProvider({ children }) {
     drinksRequest,
     mealsFilters,
     drinksFilters,
-  }), [drinksFilters, drinksRequest, email, isDisabled,
-    isSearching, mealsFilters, mealsRequest, password,
-    radioInput, searchInput]);
+    mealsByCategory,
+    setMealsByCategory,
+    drinksByCategory,
+    setDrinksByCategory,
+    categoryActive,
+    setCategoryActive,
+    recipeDetails,
+    setRecipeDetails,
+  }), [categoryActive, drinksByCategory,
+    drinksFilters, drinksRequest, email,
+    isDisabled, isSearching, mealsByCategory,
+    mealsFilters, mealsRequest, password,
+    radioInput, recipeDetails, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>
