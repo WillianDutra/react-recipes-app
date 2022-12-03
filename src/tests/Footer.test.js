@@ -1,12 +1,21 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Meals from '../components/Meals';
-import Drinks from '../components/Drinks';
+import { act } from 'react-dom/test-utils';
+import RecipesProvider from '../context/RecipesProvider';
+import renderWithRouter from '../utils/renderWithRouter';
+import App from '../App';
 
 describe('Testa componente Footer', () => {
   test('Meals footer', () => {
-    render(<Meals />);
+    const { history } = renderWithRouter(
+      <RecipesProvider><App /></RecipesProvider>,
+    );
+
+    act(() => {
+      history.push('/meals');
+    });
+
     const drink = screen.getByTestId(/drinks-bottom-btn/i);
     const meal = screen.getByTestId(/meals-bottom-btn/i);
     expect(drink).toBeInTheDocument();
@@ -15,8 +24,16 @@ describe('Testa componente Footer', () => {
     const title = screen.getByRole('heading', { level: 1, name: /Drinks/i });
     expect(title).toBeInTheDocument();
   });
+
   test('Drinks footer', () => {
-    render(<Drinks />);
+    const { history } = renderWithRouter(
+      <RecipesProvider><App /></RecipesProvider>,
+    );
+
+    act(() => {
+      history.push('/drinks');
+    });
+
     const drink = screen.getByTestId(/drinks-bottom-btn/i);
     const meal = screen.getByTestId(/meals-bottom-btn/i);
     expect(drink).toBeInTheDocument();
