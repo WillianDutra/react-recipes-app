@@ -5,6 +5,11 @@ import MealsDetails from '../components/MealsDetails';
 import DrinksDetails from '../components/DrinksDetails';
 import { getRecipeData } from '../services/requestAPI';
 
+
+
+import '../styles/details.css';
+
+
 export default function RecipeDetails() {
   const { recipeDetails, setRecipeDetails } = useContext(RecipesContext);
   const location = useLocation();

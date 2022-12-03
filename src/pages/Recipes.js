@@ -15,7 +15,8 @@ export default function Recipes() {
     const locComponent = usePathname();
     if (locComponent === '/meals') {
       return (<Meals />);
-    } if (locComponent === '/drinks') {
+    }
+    if (locComponent === '/drinks') {
       return (<Drinks />);
     }
   };

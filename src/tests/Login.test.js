@@ -47,4 +47,21 @@ describe('Testa a tela de login', () => {
     const title = screen.getByRole('heading', { level: 1, name: /Meals/i });
     expect(title).toBeInTheDocument();
   });
+
+  it('Verifica se o email de login aparece na tela da rota profile', () => {
+    renderWithRouter(<RecipesProvider><App /></RecipesProvider>);
+
+    const email = screen.getByTestId(testIds.emailInput);
+    const button = screen.getByTestId(testIds.loginSubmitButton);
+    const password = screen.getByTestId(testIds.passwordInput);
+    userEvent.type(email, VALID_EMAIL);
+    userEvent.type(password, VALID_PASSWORD);
+    userEvent.click(button);
+    const profilePage = screen.getByAltText('Profile');
+    userEvent.click(profilePage);
+
+    const title = screen.getByRole('heading', { level: 1, name: /profile/i });
+    expect(title).toBeInTheDocument();
+    expect(screen.getByText(VALID_EMAIL)).toBeInTheDocument();
+  });
 });
