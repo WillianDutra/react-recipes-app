@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import { requestIngredient, requestFirstLetter,
-  requestName } from '../services/requestAPI';
+import { requestAPI } from '../services/requestAPI';
 
 import '../styles/searchbar.css';
 
@@ -13,18 +13,46 @@ export default function SearchBar() {
     setRadioInput,
   } = useContext(RecipesContext);
 
+  const usePathname = () => {
+    const location = useLocation();
+    return location.pathname;
+  };
+
+  const route = usePathname();
+
+  const oneCharacterAlert = () => {
+    if (searchInput.length > 1) {
+      return global.alert('Your search must have only 1 (one) character');
+    }
+  };
+
   const haldleClick = () => {
-    if (radioInput === 'Ingredient') {
-      requestIngredient(searchInput);
-    }
-    if (radioInput === 'Name') {
-      requestName(searchInput);
-    }
-    if (radioInput === 'First letter') {
-      if (searchInput.length > 1) {
-        return global.alert('Your search must have only 1 (one) character');
+    switch (route) {
+    case '/drinks':
+      if (radioInput === 'Ingredient') {
+        requestAPI(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchInput}`);
       }
-      requestFirstLetter(searchInput);
+      if (radioInput === 'Name') {
+        requestAPI(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`);
+      }
+      if (radioInput === 'First letter') {
+        oneCharacterAlert();
+        requestAPI(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchInput}`);
+      }
+      break;
+
+    default:
+      if (radioInput === 'Ingredient') {
+        requestAPI(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`);
+      }
+      if (radioInput === 'Name') {
+        requestAPI(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`);
+      }
+      if (radioInput === 'First letter') {
+        oneCharacterAlert();
+        requestAPI(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInput}`);
+      }
+      break;
     }
   };
 
@@ -32,6 +60,7 @@ export default function SearchBar() {
     <div className="search-container">
       <label htmlFor="search-input">
         <input
+          placeholder="Digite sua pesquisa"
           data-testid="search-input"
           type="text"
           name="search-input"

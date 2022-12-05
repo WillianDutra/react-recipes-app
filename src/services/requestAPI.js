@@ -12,23 +12,23 @@ export const requestDrinksAPI = async () => {
 };
 
 // Requisições especificada
-export const requestIngredient = async (ingrediente) => {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingrediente}`);
+export const requestAPI = async (url) => {
+  const response = await fetch(url);
   const results = await response.json();
   return results;
 };
 
-export const requestName = async (nome) => {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${nome}`);
-  const results = await response.json();
-  return results;
-};
+// export const requestName = async (nome) => {
+//   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${nome}`);
+//   const results = await response.json();
+//   return results;
+// };
 
-export const requestFirstLetter = async (primeiraLetra) => {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}`);
-  const results = await response.json();
-  return results;
-};
+// export const requestFirstLetter = async (primeiraLetra) => {
+//   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}`);
+//   const results = await response.json();
+//   return results;
+// };
 
 // Requisição de filtros
 export const requestMealsFilters = async () => {
