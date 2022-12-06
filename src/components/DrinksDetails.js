@@ -62,6 +62,7 @@ export default function DrinksDetails() {
               {' - '}
               { ele.strAlcoholic }
             </p>
+            <h3>Ingredientes</h3>
             {
               getIngredientsList().map((obj, i) => (
                 <div key={ i }>
@@ -69,6 +70,7 @@ export default function DrinksDetails() {
                 </div>
               ))
             }
+            <h3>Instruções</h3>
             <p data-testid="instructions">
               {ele.strInstructions}
             </p>

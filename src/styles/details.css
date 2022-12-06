@@ -3,7 +3,7 @@ main div img {
 }
 
 .carousel {
-  height: 180px;
+  height: 200px;
   overflow: auto;
   white-space: nowrap;
   width: 360px;
@@ -11,4 +11,16 @@ main div img {
 
 .carousel div {
   display: inline-block;
+}
+
+.start-btn {
+  background-color: white;
+  border: transparent;
+  border-top: 2px solid black;
+  bottom: 0;
+  font-weight: 700;
+  margin-top: 20px;
+  padding: 8px 4px;
+  position: fixed;
+  width: 100%;
 }
