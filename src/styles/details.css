@@ -5,6 +5,7 @@ main div img {
 .carousel {
   height: 200px;
   overflow: auto;
+  margin-bottom: 50px;
   white-space: nowrap;
   width: 360px;
 }
