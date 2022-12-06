@@ -1,8 +1,9 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 
 export default function DrinksDetails() {
-  const { recipeDetails } = useContext(RecipesContext);
+  const { recipeDetails, mealsRequest } = useContext(RecipesContext);
 
   const getIngredientsList = () => {
     const { drinks } = recipeDetails;
@@ -41,6 +42,8 @@ export default function DrinksDetails() {
     }
   };
 
+  const recipes = 6;
+
   return (
     <>
       {
@@ -72,6 +75,27 @@ export default function DrinksDetails() {
           </div>
         ))
       }
+      <div className="carousel">
+        { mealsRequest.slice(0, recipes).map((ele, index) => (
+          <div
+            key={ ele.idMeal }
+            className="card"
+            data-testid={ `${index}-recommendation-card` }
+          >
+            <Link to={ `/meals/${ele.idMeal}` }>
+              <img
+                src={ ele.strMealThumb }
+                alt={ ele.strMeal }
+              />
+              <p
+                data-testid={ `${index}-recommendation-title` }
+              >
+                { ele.strMeal }
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
