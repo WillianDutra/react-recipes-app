@@ -2,7 +2,7 @@ main div img {
   width: 360px;
 }
 
-div.carousel {
+.carousel {
   height: 180px;
   overflow: auto;
   white-space: nowrap;
