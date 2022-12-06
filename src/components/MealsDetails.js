@@ -66,6 +66,7 @@ export default function MealsDetails() {
             <p data-testid="recipe-category">
               { ele.strCategory }
             </p>
+            <h3>Ingredientes</h3>
             {
               getIngredientsList().map((obj, i) => (
                 <div key={ i }>
@@ -73,6 +74,7 @@ export default function MealsDetails() {
                 </div>
               ))
             }
+            <h3>Instruções</h3>
             <p data-testid="instructions">
               {ele.strInstructions}
             </p>

@@ -27,9 +27,18 @@ export default function RecipeDetails() {
   }, [location.pathname, setRecipeDetails]);
 
   return (
-    <main>
-      {recipeDetails.meals && <MealsDetails />}
-      {recipeDetails.drinks && <DrinksDetails />}
-    </main>
+    <>
+      <main>
+        {recipeDetails.meals && <MealsDetails />}
+        {recipeDetails.drinks && <DrinksDetails />}
+      </main>
+      <button
+        type="button"
+        className="start-btn"
+        data-testid="start-recipe-btn"
+      >
+        Start Recipe
+      </button>
+    </>
   );
 }
