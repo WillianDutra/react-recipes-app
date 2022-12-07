@@ -14,7 +14,7 @@ export default function RecipesProvider({ children }) {
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [radioInput, setRadioInput] = useState('');
-  const [searchRecipes, setSearchRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
   // Estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -70,8 +70,8 @@ export default function RecipesProvider({ children }) {
     setCategoryActive,
     recipeDetails,
     setRecipeDetails,
-    searchRecipes,
-    setSearchRecipes,
+    recipes,
+    setRecipes,
     recipeDone,
     setRecipeDone,
     inProgress,

@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import renderWithRouter from '../utils/renderWithRouter';
 import RecipesProvider from '../context/RecipesProvider';
@@ -17,6 +17,8 @@ describe('Testa a renderização do componente Drinks', () => {
     const title = screen.getByText('Drinks');
     expect(title).toBeInTheDocument();
 
-    await waitFor(() => expect(screen.getByTestId('0-recipe-card')).toBeInTheDocument);
+    setTimeout(() => {
+      expect(screen.getByTestId('0-recipe-card').toBeInTheDocument);
+    }, 2000);
   });
 });
