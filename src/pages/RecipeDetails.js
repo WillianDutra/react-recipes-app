@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import MealsDetails from '../components/MealsDetails';
 import DrinksDetails from '../components/DrinksDetails';
+import RecipeButton from '../components/RecipeButton';
 import { getRecipeData } from '../services/requestAPI';
 
 import '../styles/details.css';
@@ -32,13 +33,7 @@ export default function RecipeDetails() {
         {recipeDetails.meals && <MealsDetails />}
         {recipeDetails.drinks && <DrinksDetails />}
       </main>
-      <button
-        type="button"
-        className="start-btn"
-        data-testid="start-recipe-btn"
-      >
-        Start Recipe
-      </button>
+      <RecipeButton />
     </>
   );
 }
