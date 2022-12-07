@@ -10,6 +10,7 @@ export default function SearchBar() {
     setSearchInput,
     radioInput,
     setRadioInput,
+    // recipes,
     setRecipes,
   } = useContext(RecipesContext);
 
@@ -22,89 +23,71 @@ export default function SearchBar() {
 
   const route = usePathname();
   const RecipeNotFoundMessage = 'Sorry, we haven\'t found any recipes for these filters.';
-  const updateRecipe = (newRecipes) => {
-    setRecipes(newRecipes === null ? [] : newRecipes);
-    console.log('newRecipe:', newRecipes);
-  };
 
-  const mealsCondition = (meals) => {
-    console.log('meals', meals);
-    if (meals.length === 1) {
-      history.push(`/meals/${meals[0].idMeal}`);
-    } else if (meals.length === 0) {
+  const updateRecipe = (newRecipes) => {
+    if (newRecipes === null) {
+      setRecipes([]);
       global.alert(RecipeNotFoundMessage);
-    }
-  };
-  const drinksCondition = (drinks) => {
-    if (drinks.length === 1) {
-      history.push(`/drinks/${drinks[0].idMeal}`);
-    } else if (drinks.length === 0) {
-      global.alert(RecipeNotFoundMessage);
+    } else {
+      setRecipes(newRecipes);
+      if (newRecipes.length === 1) {
+        switch (route) {
+        case '/drinks':
+          history.push(`/drinks/${newRecipes[0].idDrink}`);
+          break;
+        default:
+          history.push(`/meals/${newRecipes[0].idMeal}`);
+          break;
+        }
+      }
     }
   };
 
   const searchDrinksByIngredient = async () => {
     await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.drinks);
-        return result.drinks;
-      }).then((drinks) => {
-        drinksCondition(drinks);
+      .then(({ drinks } = result) => {
+        updateRecipe(drinks);
       });
   };
   const searchDrinksByName = async () => {
     await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.drinks);
-        return result.drinks;
-      }).then((drinks) => {
-        drinksCondition(drinks);
+      .then(({ drinks } = result) => {
+        updateRecipe(drinks);
       });
   };
 
   const searchDrinksByFirstLetter = async () => {
     if (searchInput.length > 1) {
       global.alert('Your search must have only 1 (one) character');
+    } else {
+      await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchInput}`)
+        .then(({ drinks }) => {
+          updateRecipe(drinks);
+        });
     }
-    await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.drinks);
-        return result.drinks;
-      }).then((drinks) => {
-        drinksCondition(drinks);
-      });
   };
 
   const searchMealsByIngredient = async () => {
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.meals);
-        return result.meals;
-      }).then((meals) => {
-        mealsCondition(meals);
+      .then(({ meals } = result) => {
+        updateRecipe(meals);
       });
   };
   const searchMealsByName = async () => {
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.meals);
-        return result.meals;
-      }).then(({ meals } = result) => {
-        mealsCondition(meals);
-        // TODO: verificar renderização da lista após a pesquisa
+      .then(({ meals } = result) => {
+        updateRecipe(meals);
       });
   };
+    // TODO: verificar renderização da lista após a pesquisa
 
   const searchMealsByFirstLetter = async () => {
     if (searchInput.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     }
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInput}`)
-      .then((result) => {
-        updateRecipe(result.meals);
-        return result.meals;
-      }).then((meals) => {
-        mealsCondition(meals);
+      .then(({ meals } = result) => {
+        updateRecipe(meals);
       });
   };
 
