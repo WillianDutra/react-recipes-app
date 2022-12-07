@@ -94,12 +94,9 @@ describe('Testa a renderização do componente SearchBar', () => {
     setTimeout(() => {
       waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument);
     }, 2000);
-
-    expect(global.fetch).toHaveBeenCalled();
-    expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=wa');
   });
 
-  it('Verifica exibição da página de detalhes, quando encontra apena 1 item na pesquisa', async () => {
+  it('Verifica exibição da página de detalhes, quando encontra apenas 1 item na pesquisa', async () => {
     const { history } = renderWithRouter(
       <RecipesProvider><App /></RecipesProvider>,
     );
@@ -112,11 +109,14 @@ describe('Testa a renderização do componente SearchBar', () => {
     userEvent.click(searchIconBtn);
     const searchBarInput = screen.getByTestId(searchBar);
 
-    userEvent.type(searchBarInput, 'Aquamarine');
+    userEvent.type(searchBarInput, 'aquamarine');
     userEvent.click(screen.getByLabelText('Name'));
     userEvent.click(screen.getByText('Search'));
+    expect(global.fetch).toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=aquamarine');
+
     setTimeout(() => {
-      waitFor(() => expect(screen.getByRole('heading', { level: 3, name: /Aquamarine/i })).toBeInTheDocument);
+      expect(history.location.pathname).toBe('/drinks/178319');
     }, 2000);
   });
 });
