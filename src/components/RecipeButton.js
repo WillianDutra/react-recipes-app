@@ -1,4 +1,5 @@
 import { useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 
 export default function RecipeButton() {
@@ -44,16 +45,18 @@ export default function RecipeButton() {
     }
   }, [recipeDetails, setInProgress]);
 
+  const location = useLocation();
+
   return (
     <>
       { !recipeDone && (
-        <button
-          type="button"
+        <Link
           className="start-btn"
           data-testid="start-recipe-btn"
+          to={ `${location.pathname}/in-progress` }
         >
           { inProgress ? 'Continue Recipe' : 'Start Recipe'}
-        </button>
+        </Link>
       )}
       <div />
     </>
