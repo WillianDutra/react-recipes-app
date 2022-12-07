@@ -31,6 +31,7 @@ export default function RecipesProvider({ children }) {
 
   // Estado da requisição da receita detalhada
   const [recipeDetails, setRecipeDetails] = useState([]);
+  const [recipeDone, setRecipeDone] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -70,11 +71,12 @@ export default function RecipesProvider({ children }) {
     setRecipeDetails,
     searchRecipes,
     setSearchRecipes,
+    recipeDone,
+    setRecipeDone,
   }), [categoryActive, drinksByCategory,
-    drinksFilters, drinksRequest, email,
-    isDisabled, isSearching, mealsByCategory,
-    mealsFilters, mealsRequest, password,
-    radioInput, recipeDetails, searchInput, searchRecipes]);
+    drinksFilters, drinksRequest, email, isDisabled, isSearching,
+    mealsByCategory, mealsFilters, mealsRequest, password, radioInput,
+    recipeDetails, recipeDone, searchInput, searchRecipes]);
 
   return (
     <RecipesContext.Provider value={ value }>
