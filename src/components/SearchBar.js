@@ -89,7 +89,7 @@ export default function SearchBar() {
       .then((result) => {
         updateRecipe(result.meals);
         return result.meals;
-      }).then((meals) => {
+      }).then(({ meals } = result) => {
         mealsCondition(meals);
         // TODO: verificar renderização da lista após a pesquisa
       });
