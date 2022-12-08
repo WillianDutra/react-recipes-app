@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import { getMealsByCategory } from '../services/requestAPI';
 
-import '../styles/card.css';
-
 function Meals() {
   const {
     mealsRequest, mealsFilters,
