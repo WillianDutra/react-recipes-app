@@ -12,6 +12,7 @@ export default function SearchBar() {
     setRadioInput,
     // recipes,
     setRecipes,
+    setCategoryActive,
   } = useContext(RecipesContext);
 
   const history = useHistory();
@@ -26,20 +27,19 @@ export default function SearchBar() {
 
   const updateRecipe = (newRecipes) => {
     if (newRecipes === null) {
-      setRecipes([]);
       global.alert(RecipeNotFoundMessage);
+    } else if (newRecipes.length === 1) {
+      switch (route) {
+      case '/drinks':
+        history.push(`/drinks/${newRecipes[0].idDrink}`);
+        break;
+      default:
+        history.push(`/meals/${newRecipes[0].idMeal}`);
+        break;
+      }
     } else {
       setRecipes(newRecipes);
-      if (newRecipes.length === 1) {
-        switch (route) {
-        case '/drinks':
-          history.push(`/drinks/${newRecipes[0].idDrink}`);
-          break;
-        default:
-          history.push(`/meals/${newRecipes[0].idMeal}`);
-          break;
-        }
-      }
+      setCategoryActive({ active: true, category: '' });
     }
   };
 

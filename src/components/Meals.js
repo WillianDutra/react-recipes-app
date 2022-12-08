@@ -9,10 +9,10 @@ function Meals() {
   const {
     mealsRequest, mealsFilters,
     mealsByCategory, setMealsByCategory,
-    categoryActive, setCategoryActive,
+    categoryActive, setCategoryActive, recipes,
   } = useContext(RecipesContext);
 
-  const recipes = 12;
+  const maxRecipes = 12;
   const filters = 5;
 
   const getRecipes = async (filter) => {
@@ -25,48 +25,76 @@ function Meals() {
   };
 
   return (
-    <main>
-      <div className="filter-buttons">
-        { mealsFilters.slice(0, filters).map((ele) => (
-          <button
-            key={ ele.strCategory }
-            data-testid={ `${ele.strCategory}-category-filter` }
-            type="button"
-            onClick={ ({ target: { innerText } }) => getRecipes(innerText) }
-          >
-            {ele.strCategory}
-          </button>
-        ))}
-        <button
-          data-testid="All-category-filter"
-          type="button"
-          onClick={ () => setCategoryActive({ active: false, category: '' }) }
+    <>
+      <div>
+        { recipes.length > 1
+      && recipes.slice(0, maxRecipes).map((ele, index) => (
+        <div
+          key={ ele.idMeal }
+          className="card"
+          data-testid={ `${index}-recipe-card` }
         >
-          All
-        </button>
+          <Link to={ `/meals/${ele.idMeal}` }>
+            <img
+              src={ ele.strMealThumb }
+              alt={ ele.strMeal }
+              data-testid={ `${index}-card-img` }
+            />
+            <p
+              data-testid={ `${index}-card-name` }
+            >
+              { ele.strMeal }
+            </p>
+          </Link>
+        </div>
+      ))}
       </div>
-      { (categoryActive.active ? mealsByCategory : mealsRequest)
-        .slice(0, recipes).map((ele, index) => (
-          <div
-            key={ ele.idMeal }
-            className="card"
-            data-testid={ `${index}-recipe-card` }
-          >
-            <Link to={ `/meals/${ele.idMeal}` }>
-              <img
-                src={ ele.strMealThumb }
-                alt={ ele.strMeal }
-                data-testid={ `${index}-card-img` }
-              />
-              <p
-                data-testid={ `${index}-card-name` }
+      <main>
+        {!categoryActive.active
+        && (
+          <div className="filter-buttons">
+            { mealsFilters.slice(0, filters).map((ele) => (
+              <button
+                key={ ele.strCategory }
+                data-testid={ `${ele.strCategory}-category-filter` }
+                type="button"
+                onClick={ ({ target: { innerText } }) => getRecipes(innerText) }
               >
-                { ele.strMeal }
-              </p>
-            </Link>
+                {ele.strCategory}
+              </button>
+            ))}
+            <button
+              data-testid="All-category-filter"
+              type="button"
+              onClick={ () => setCategoryActive({ active: false, category: '' }) }
+            >
+              All
+            </button>
           </div>
-        ))}
-    </main>
+        )}
+        { (categoryActive.active ? mealsByCategory : mealsRequest)
+          .slice(0, maxRecipes).map((ele, index) => (
+            <div
+              key={ ele.idMeal }
+              className="card"
+              data-testid={ `${index}-recipe-card` }
+            >
+              <Link to={ `/meals/${ele.idMeal}` }>
+                <img
+                  src={ ele.strMealThumb }
+                  alt={ ele.strMeal }
+                  data-testid={ `${index}-card-img` }
+                />
+                <p
+                  data-testid={ `${index}-card-name` }
+                >
+                  { ele.strMeal }
+                </p>
+              </Link>
+            </div>
+          ))}
+      </main>
+    </>
   );
 }
 
