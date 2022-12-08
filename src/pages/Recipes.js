@@ -16,9 +16,7 @@ export default function Recipes() {
     if (locComponent === '/meals') {
       return (<Meals />);
     }
-    if (locComponent === '/drinks') {
-      return (<Drinks />);
-    }
+    return (<Drinks />);
   };
 
   return (

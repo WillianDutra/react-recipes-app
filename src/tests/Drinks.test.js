@@ -18,7 +18,8 @@ describe('Testa a renderização do componente Drinks', () => {
     expect(title).toBeInTheDocument();
 
     setTimeout(() => {
-      expect(screen.getByTestId('0-recipe-card').toBeInTheDocument);
+      const buttonCategory = screen.getByTestId('Cocktail-category-filter');
+      expect(buttonCategory).toHaveTextContent('Cocktail');
     }, 2000);
   });
 });
