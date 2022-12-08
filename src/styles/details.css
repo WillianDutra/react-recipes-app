@@ -3,11 +3,9 @@ main div img {
 }
 
 .carousel {
-  height: 200px;
-  margin-bottom: 50px;
   overflow: auto;
+  margin: 20px 0;
   white-space: nowrap;
-  width: 360px;
 }
 
 .carousel div {
@@ -16,13 +14,17 @@ main div img {
 
 .start-btn {
   border-top: 2px solid black;
+  background-color: white;
   bottom: 0;
   color: #363636;
   font-weight: 700;
-  margin-top: 20px;
   padding: 8px 4px;
   position: fixed;
   text-align: center;
   text-decoration: none;
   width: 100%;
+}
+
+.share-container button {
+  margin-bottom: 60px;
 }
