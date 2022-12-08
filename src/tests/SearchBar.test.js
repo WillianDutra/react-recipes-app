@@ -92,7 +92,7 @@ describe('Testa a renderização do componente SearchBar', () => {
     userEvent.click(screen.getByLabelText('First letter'));
     userEvent.click(screen.getByText('Search'));
     setTimeout(() => {
-      waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument);
+      waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument());
     }, 2000);
   });
 
@@ -117,6 +117,28 @@ describe('Testa a renderização do componente SearchBar', () => {
 
     setTimeout(() => {
       expect(history.location.pathname).toBe('/drinks/178319');
+    }, 2000);
+  });
+
+  it('Verifica exibição do alert, quando não encontra itens na pesquisa', async () => {
+    const { history } = renderWithRouter(
+      <RecipesProvider><App /></RecipesProvider>,
+    );
+
+    act(() => {
+      history.push('/drinks');
+    });
+
+    const searchIconBtn = screen.getByAltText(searchIcon);
+    userEvent.click(searchIconBtn);
+    const searchBarInput = screen.getByTestId(searchBar);
+
+    userEvent.type(searchBarInput, 'xablau');
+    userEvent.click(screen.getByLabelText('Name'));
+    userEvent.click(screen.getByText('Search'));
+
+    setTimeout(() => {
+      waitFor(() => expect(screen.getByRole('alert')).tohavete());
     }, 2000);
   });
 });

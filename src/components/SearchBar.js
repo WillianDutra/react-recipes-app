@@ -45,13 +45,13 @@ export default function SearchBar() {
 
   const searchDrinksByIngredient = async () => {
     await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchInput}`)
-      .then(({ drinks } = result) => {
+      .then(({ drinks }) => {
         updateRecipe(drinks);
       });
   };
   const searchDrinksByName = async () => {
     await getRecipeData(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`)
-      .then(({ drinks } = result) => {
+      .then(({ drinks }) => {
         updateRecipe(drinks);
       });
   };
@@ -69,13 +69,13 @@ export default function SearchBar() {
 
   const searchMealsByIngredient = async () => {
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`)
-      .then(({ meals } = result) => {
+      .then(({ meals }) => {
         updateRecipe(meals);
       });
   };
   const searchMealsByName = async () => {
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`)
-      .then(({ meals } = result) => {
+      .then(({ meals }) => {
         updateRecipe(meals);
       });
   };
@@ -86,7 +86,7 @@ export default function SearchBar() {
       global.alert('Your search must have only 1 (one) character');
     }
     await getRecipeData(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInput}`)
-      .then(({ meals } = result) => {
+      .then(({ meals }) => {
         updateRecipe(meals);
       });
   };
