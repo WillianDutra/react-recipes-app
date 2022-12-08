@@ -79,7 +79,6 @@ export default function SearchBar() {
         updateRecipe(meals);
       });
   };
-    // TODO: verificar renderização da lista após a pesquisa
 
   const searchMealsByFirstLetter = async () => {
     if (searchInput.length > 1) {
