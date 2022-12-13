@@ -13,13 +13,13 @@
 
 .logo-container img {
   display: block;
-  margin: 80px auto 0 auto;
+  margin: 80px auto 0;
   width: 200px;
 }
 
 .tomato-img {
-  position: absolute;
   margin-top: 72px;
+  position: absolute;
 }
 
 .login-container h1 {
@@ -27,8 +27,8 @@
   font-size: 1.2em;
   font-style: italic;
   letter-spacing: 0.15em;
-  margin-top: 80px;
   margin-bottom: 1em;
+  margin-top: 80px;
 }
 
 .login-container form {
@@ -51,8 +51,8 @@
 }
 
 .login-container a {
-  border-radius: 0.4em;
   background-color: var(--orange);
+  border-radius: 0.4em;
 }
 
 .login-container button {
@@ -60,7 +60,7 @@
   border: none;
   color: white;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 800;
   height: 40px;
   text-transform: uppercase;
   width: 250px;
