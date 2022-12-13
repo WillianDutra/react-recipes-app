@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import validationInputs from '../utils/services';
 
+import logo from '../images/logo.svg';
+import tomato from '../images/tomate.png';
+import '../styles/login.css';
+
 export default function Login() {
   const {
     isDisabled,
@@ -26,8 +30,12 @@ export default function Login() {
   const handleSubmit = () => localStorage.setItem('user', JSON.stringify({ email }));
 
   return (
-    <>
-      <h1>OI</h1>
+    <main className="login-container">
+      <div className="logo-container">
+        <img src={ logo } alt="app-logo" />
+      </div>
+      <img src={ tomato } alt="tomato" className="tomato-img" />
+      <h1>LOGIN</h1>
       <form>
         <label htmlFor="email">
           <input
@@ -61,6 +69,6 @@ export default function Login() {
 
         </button>
       </Link>
-    </>
+    </main>
   );
 }
