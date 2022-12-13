@@ -37,8 +37,8 @@
 
 .login-container input {
   border: 1px solid var(--purple);
-  color: var(--purple);
   border-radius: 0.4em;
+  color: var(--purple);
   font-size: 1em;
   margin-bottom: 0.4em;
   padding: 0.5em 1.2em;
