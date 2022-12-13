@@ -1,0 +1,67 @@
+.login-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo-container {
+  background-color: var(--purple);
+  height: 360px;
+  width: 100%;
+}
+
+.logo-container img {
+  display: block;
+  margin: 40px auto 0;
+  width: 200px;
+}
+
+.tomato-img {
+  margin-top: 32px;
+  position: absolute;
+}
+
+.login-container h1 {
+  color: var(--purple);
+  font-size: 1.2em;
+  font-style: italic;
+  letter-spacing: 0.15em;
+  margin-bottom: 1em;
+  margin-top: 80px;
+}
+
+.login-container form {
+  text-align: center;
+}
+
+.login-container input {
+  border: 1px solid var(--purple);
+  border-radius: 0.4em;
+  color: var(--purple);
+  font-size: 1em;
+  margin-bottom: 0.4em;
+  padding: 0.5em 1.2em;
+  width: 250px;
+}
+
+.login-container input::placeholder {
+  color: var(--purple);
+  opacity: 0.6;
+}
+
+.login-container a {
+  background-color: var(--orange);
+  border-radius: 0.4em;
+}
+
+.login-container button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 800;
+  height: 40px;
+  text-transform: uppercase;
+  width: 250px;
+}
