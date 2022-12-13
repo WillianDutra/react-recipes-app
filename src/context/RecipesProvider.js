@@ -34,6 +34,8 @@ export default function RecipesProvider({ children }) {
   const [recipeDone, setRecipeDone] = useState(false);
   const [inProgress, setInProgress] = useState(false);
 
+  const [recipeInProgress, setRecipeInProgress] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       setMealsRequest(await requestMealsAPI());
@@ -76,6 +78,8 @@ export default function RecipesProvider({ children }) {
     setRecipeDone,
     inProgress,
     setInProgress,
+    recipeInProgress,
+    setRecipeInProgress,
   }), [categoryActive, drinksByCategory, drinksFilters,
     drinksRequest, email, inProgress, isDisabled, isSearching,
     mealsByCategory, mealsFilters, mealsRequest, password,

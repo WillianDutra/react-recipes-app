@@ -35,7 +35,6 @@ export default function SearchBar() {
         break;
       default:
         history.push(`/meals/${newRecipes[0].idMeal}`);
-        break;
       }
     } else {
       setRecipes(newRecipes);
