@@ -1,14 +1,13 @@
-/* prettier-ignore */
 :root {
 
   --light-purple: #8958a3;
 
   --orange: #fcc436;
-  
+
   --purple: #41197f;
+
 }
 
-/* prettier-ignore */
 body, html {
   height: 100%;
 }
