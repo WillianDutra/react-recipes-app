@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
+// import logoWithTitle from '../images/logoWithTitle.svg';
 import '../styles/header.css';
 
 function Header() {
@@ -65,6 +66,7 @@ function Header() {
   return (
     <>
       <header>
+        {/* <img src={ logoWithTitle } alt="logo-and-title" /> */}
         { useHandleHeader() }
         <Link to="/profile">
           <img

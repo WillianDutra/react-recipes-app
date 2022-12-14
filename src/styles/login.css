@@ -65,3 +65,7 @@
   text-transform: uppercase;
   width: 250px;
 }
+
+.login-container button:disabled {
+  opacity: 0.5;
+}

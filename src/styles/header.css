@@ -1,25 +1,28 @@
 header {
-  border-bottom: 2px solid black;
+  background-color: var(--yellow);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
+  height: 50px;
   justify-content: space-around;
-  margin-top: 4px;
   width: 100%;
-}
-
-header h1 {
-  margin: 4px 0 0;
 }
 
 header a {
   height: 32px;
+  margin-top: 4px;
 }
 
 header button {
-  background-color: white;
+  background: none;
   border: transparent;
   cursor: pointer;
   height: 30px;
-  margin-left: 50px;
+  margin: 4px 0 0 50px;
   width: 30px;
+}
+
+header link {
+  filter: invert(12%) sepia(38%) saturate(6028%)
+    hue-rotate(258deg) brightness(92%) contrast(101%);
 }

@@ -83,7 +83,8 @@ export default function RecipesProvider({ children }) {
   }), [categoryActive, drinksByCategory, drinksFilters,
     drinksRequest, email, inProgress, isDisabled, isSearching,
     mealsByCategory, mealsFilters, mealsRequest, password,
-    radioInput, recipeDetails, recipeDone, recipes, searchInput]);
+    radioInput, recipeDetails, recipeDone, recipeInProgress,
+    recipes, searchInput]);
 
   return (
     <RecipesContext.Provider value={ value }>
