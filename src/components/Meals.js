@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import { getMealsByCategory } from '../services/requestAPI';
+import { mealIconList } from '../services/getIconsList';
 
+import allIcon from '../images/filterIcons/allFilter.svg';
 import '../styles/card.css';
 
 function Meals() {
@@ -14,6 +16,7 @@ function Meals() {
 
   const maxRecipes = 12;
   const filters = 5;
+  const icons = mealIconList();
 
   const getRecipes = async (filter) => {
     if (categoryActive.category === filter) {
@@ -32,15 +35,22 @@ function Meals() {
           type="button"
           onClick={ () => setCategoryActive({ active: false, category: '' }) }
         >
+          <img src={ allIcon } alt="all-icon" className="icon-filters" />
           All
         </button>
-        { mealsFilters.slice(0, filters).map((ele) => (
+        { mealsFilters.slice(0, filters).map((ele, i) => (
           <button
             key={ ele.strCategory }
             data-testid={ `${ele.strCategory}-category-filter` }
             type="button"
-            onClick={ ({ target: { innerText } }) => getRecipes(innerText) }
+            className={ ele.strCategory }
+            onClick={ ({ target: { className } }) => getRecipes(className) }
           >
+            <img
+              src={ icons[i] }
+              alt="filter-icon"
+              className={ ele.strCategory }
+            />
             {ele.strCategory}
           </button>
         ))}

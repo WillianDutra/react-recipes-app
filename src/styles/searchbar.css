@@ -44,3 +44,23 @@
   text-transform: uppercase;
   width: 212px;
 }
+
+.filter-buttons {
+  height: 100px;
+  text-align: center;
+}
+
+.filter-buttons button {
+  background: none;
+  border: transparent;
+  font-size: 12px;
+  height: 80px;
+  padding: 0;
+  text-align: center;
+  width: 56px;
+}
+
+.filter-buttons button img {
+  height: 50px;
+  width: 50px;
+}
