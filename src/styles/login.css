@@ -32,6 +32,8 @@
 }
 
 .login-container form {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -50,6 +52,10 @@
   opacity: 0.6;
 }
 
+.login-container input:focus {
+  outline-color: var(--yellow);
+}
+
 .login-container a {
   background-color: var(--orange);
   border-radius: 0.4em;
@@ -64,4 +70,8 @@
   height: 40px;
   text-transform: uppercase;
   width: 250px;
+}
+
+.login-container button:disabled {
+  opacity: 0.5;
 }

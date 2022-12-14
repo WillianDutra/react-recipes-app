@@ -49,7 +49,7 @@ export default function Login() {
         </label>
         <label htmlFor="password">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             data-testid="password-input"

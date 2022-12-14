@@ -1,71 +1,68 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 import SearchBar from './SearchBar';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
+import mealIcon from '../images/mealIcon.svg';
+import drinkIcon from '../images/drinkIcon.svg';
+import logoWithTitle from '../images/logoWithTitle.svg';
 import '../styles/header.css';
 
-function Header() {
+export default function Header() {
+  const [canSearch, setCanSearch] = useState(false);
   const { isSearching, setIsSearching } = useContext(RecipesContext);
 
-  // Referência Consultada: https://surajsharma.net/blog/current-url-in-react
-  const usePathname = () => {
-    const location = useLocation();
-    return location.pathname;
-  };
+  const { pathname } = useLocation();
 
   const useHandleHeader = () => {
-    const locComponent = usePathname();
-    switch (locComponent) {
-    case '/drinks':
-      return (
-        <>
-          <h1 data-testid="page-title">Drinks</h1>
-          <button
-            type="button"
-            onClick={ () => setIsSearching(!isSearching) }
-          >
-            <img
-              data-testid="search-top-btn"
-              name="search-btn"
-              src={ search }
-              alt="search icon"
-            />
-          </button>
-        </>
-      );
-    case '/profile':
-      return (<h1 data-testid="page-title">Profile</h1>);
-    case '/favorite-recipes':
-      return (<h1 data-testid="page-title">Favorite Recipes</h1>);
-    case '/done-recipes':
-      return (<h1 data-testid="page-title">Done Recipes</h1>);
-    default:
-      return (
-        <>
-          <h1 data-testid="page-title">Meals</h1>
-          <button
-            type="button"
-            onClick={ () => setIsSearching(!isSearching) }
-          >
-            <img
-              data-testid="search-top-btn"
-              name="search-btn"
-              src={ search }
-              alt="search icon"
-            />
-          </button>
-        </>
-      );
+    if (pathname === '/meals') {
+      return 'Meals';
+    } if (pathname === '/drinks') {
+      return 'Drinks';
+    } if (pathname === '/profile') {
+      return 'Profile';
+    } if (pathname === '/favorite-recipes') {
+      return 'Favorite Recipes';
+    } if (pathname === '/done-recipes') {
+      return 'Done Recipes';
     }
   };
+
+  useEffect(() => {
+    if (pathname === '/meals') {
+      setCanSearch(true);
+    } if (pathname === '/drinks') {
+      setCanSearch(true);
+    } if (pathname === '/profile') {
+      setCanSearch(false);
+    } if (pathname === '/favorite-recipes') {
+      setCanSearch(false);
+    } if (pathname === '/done-recipes') {
+      setCanSearch(false);
+    }
+  }, [pathname]);
 
   return (
     <>
       <header>
-        { useHandleHeader() }
+        <img src={ logoWithTitle } alt="logo-and-title" />
+        {
+          canSearch && (
+            <button
+              type="button"
+              onClick={ () => setIsSearching(!isSearching) }
+            >
+              <img
+                data-testid="search-top-btn"
+                name="search-btn"
+                src={ search }
+                alt="search icon"
+              />
+            </button>
+          )
+        }
         <Link to="/profile">
           <img
             data-testid="profile-top-btn"
@@ -74,9 +71,12 @@ function Header() {
           />
         </Link>
       </header>
+      <div className="page-title">
+        { pathname === '/meals' && <img src={ mealIcon } alt="meals-icon" />}
+        { pathname === '/drinks' && <img src={ drinkIcon } alt="drinks-icon" />}
+        <h1 data-testid="page-title">{ useHandleHeader() }</h1>
+      </div>
       { isSearching && <SearchBar />}
     </>
   );
 }
-
-export default Header;
