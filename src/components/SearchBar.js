@@ -126,6 +126,7 @@ export default function SearchBar() {
           type="text"
           name="search-input"
           id="search-input"
+          className="search-input"
           onChange={ ({ target: { value } }) => setSearchInput(value) }
           value={ searchInput }
         />
@@ -139,6 +140,7 @@ export default function SearchBar() {
           name="radio-input"
           type="radio"
           value="Ingredient"
+          className="radio-input"
           onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         Ingredient
@@ -152,6 +154,7 @@ export default function SearchBar() {
           name="radio-input"
           type="radio"
           value="Name"
+          className="radio-input"
           onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         Name
@@ -165,6 +168,7 @@ export default function SearchBar() {
           name="radio-input"
           type="radio"
           value="First letter"
+          className="radio-input"
           onChange={ ({ target: { value } }) => setRadioInput(value) }
         />
         First letter

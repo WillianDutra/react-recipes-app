@@ -38,9 +38,9 @@ export default function Header() {
     } if (pathname === '/profile') {
       setCanSearch(false);
     } if (pathname === '/favorite-recipes') {
-      return 'Favorite Recipes';
+      setCanSearch(false);
     } if (pathname === '/done-recipes') {
-      return 'Done Recipes';
+      setCanSearch(false);
     }
   }, [pathname]);
 
