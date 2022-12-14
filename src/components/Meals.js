@@ -4,7 +4,7 @@ import RecipesContext from '../context/RecipesContext';
 import { getMealsByCategory } from '../services/requestAPI';
 import { mealIconList } from '../services/getIconsList';
 
-import allIcon from '../images/filterIcons/allFilter.svg';
+import allIcon from '../images/filterIcons/allMealsFilter.svg';
 import '../styles/card.css';
 
 function Meals() {
