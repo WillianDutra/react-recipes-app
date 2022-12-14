@@ -10,7 +10,7 @@ header {
 
 header a {
   height: 32px;
-  margin-top: 4px;
+  margin-top: 10px;
 }
 
 header button {
@@ -18,7 +18,7 @@ header button {
   border: transparent;
   cursor: pointer;
   height: 30px;
-  margin: 4px 0 0 50px;
+  margin: 10px 0 0 50px;
   width: 30px;
 }
 
