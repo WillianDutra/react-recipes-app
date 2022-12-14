@@ -27,6 +27,13 @@ function Meals() {
   return (
     <main>
       <div className="filter-buttons">
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => setCategoryActive({ active: false, category: '' }) }
+        >
+          All
+        </button>
         { mealsFilters.slice(0, filters).map((ele) => (
           <button
             key={ ele.strCategory }
@@ -37,13 +44,6 @@ function Meals() {
             {ele.strCategory}
           </button>
         ))}
-        <button
-          data-testid="All-category-filter"
-          type="button"
-          onClick={ () => setCategoryActive({ active: false, category: '' }) }
-        >
-          All
-        </button>
       </div>
       { recipes.length > 1
       && recipes.slice(0, maxRecipes).map((ele, index) => (

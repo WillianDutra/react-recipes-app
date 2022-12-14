@@ -26,3 +26,18 @@ header link {
   filter: invert(12%) sepia(38%) saturate(6028%)
     hue-rotate(258deg) brightness(92%) contrast(101%);
 }
+
+.page-title {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.page-title h1 {
+  color: var(--purple);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-top: 4px;
+  text-align: center;
+  text-transform: uppercase;
+}

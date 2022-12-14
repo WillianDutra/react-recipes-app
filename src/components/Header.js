@@ -5,6 +5,8 @@ import SearchBar from './SearchBar';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
+import mealIcon from '../images/mealIcon.svg';
+import drinkIcon from '../images/drinkIcon.svg';
 import logoWithTitle from '../images/logoWithTitle.svg';
 import '../styles/header.css';
 
@@ -69,7 +71,11 @@ export default function Header() {
           />
         </Link>
       </header>
-      <h1 data-testid="page-title">{ useHandleHeader() }</h1>
+      <div className="page-title">
+        { pathname === '/meals' && <img src={ mealIcon } alt="meals-icon" />}
+        { pathname === '/drinks' && <img src={ drinkIcon } alt="drinks-icon" />}
+        <h1 data-testid="page-title">{ useHandleHeader() }</h1>
+      </div>
       { isSearching && <SearchBar />}
     </>
   );
