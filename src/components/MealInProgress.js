@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/recipeinprogress.css';
 import shareIcon from '../images/shareIcon.svg';
@@ -9,11 +9,36 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 const copy = require('clipboard-copy');
 
 export default function MealInProgress() {
-  const { recipeDetails } = useContext(RecipesContext);
-  const { recipeInProgress } = useContext(RecipesContext);
+  const { recipeDetails, recipeInProgress } = useContext(RecipesContext);
+  // const { recipeInProgress } = useContext(RecipesContext);
   const [isCopied, setIsCopied] = useState(true);
   const [isFavorited, setIsFavorite] = useState(false);
+  const [checkedIngredients, setCheckedIngredients] = useState([]);
   const location = useLocation();
+
+  useEffect(() => {
+    // const storeX = storage.filter((e) => e.meals === recipeInProgress.meals[0].idMeal);
+    const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const id = recipeInProgress.meals[0].idMeal;
+    // const oi = storage.some((el) => el === id);
+    if (storage) {
+      const newing = {
+        drinks: { ...storage.drinks },
+        meals: { ...storage.meals,
+          [id]: checkedIngredients,
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newing));
+    } else {
+      // setCheckedIngredients([...checkedIngredients]);
+
+      const newrecipe = {
+        drinks: {},
+        meals: {},
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newrecipe));
+    }
+  }, [checkedIngredients]);
 
   const getRoute = () => {
     copy(`http://localhost:3000${location.pathname}`);
@@ -21,8 +46,27 @@ export default function MealInProgress() {
   };
 
   const handleClick = ({ target }) => {
+    // const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    // const id = recipeInProgress.meals[0].idMeal;
     if (target.checked) {
       target.parentElement.classList = 'checked';
+      // if (!storage) {
+      //   const newrecipe = {
+      //     drinks: {},
+      //     meals: { [id]: [target.id] },
+      //   };
+      //   localStorage.setItem('inProgressRecipes', JSON.stringify(newrecipe));
+      // } {
+      setCheckedIngredients([...checkedIngredients, target.id]);
+      //   const newing = {
+      //     drinks: { ...storage.drinks },
+      //     meals: {
+      //       ...storage.meals,
+      //       [id]: [target.id],
+      //     },
+      //   };
+      //   localStorage.setItem('inProgressRecipes', JSON.stringify(newing));
+      // }
     } else {
       target.parentElement.classList = '';
     }
@@ -114,11 +158,13 @@ export default function MealInProgress() {
   };
 
   const formatIngredients = (obj, i) => {
+    // const medida = recipeInProgress.meals[0][obj.mea];
+    const medida = recipeInProgress.meals[0][obj.ing];
     if (recipeInProgress.meals[0][obj.mea]) {
       return (
 
         <label htmlFor={ obj } data-testid={ `${i}-ingredient-step` }>
-          <input type="checkbox" name={ obj } id="ingredient" onClick={ handleClick } />
+          <input type="checkbox" name={ obj } id={ medida } onClick={ handleClick } />
 
           {' '}
           {recipeInProgress.meals[0][obj.ing]}
