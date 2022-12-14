@@ -1,10 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
-
+import '../styles/recipeinprogress.css';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
+
+const copy = require('clipboard-copy');
 
 export default function DrinkInProgress() {
   const { recipeDetails } = useContext(RecipesContext);
@@ -16,6 +18,19 @@ export default function DrinkInProgress() {
   const getRoute = () => {
     copy(`http://localhost:3000${location.pathname}`);
     setIsCopied(false);
+  };
+
+  const handleClick = ({ target }) => {
+    if (target.checked) {
+      target.parentElement.classList = 'checked';
+    } else {
+      target.parentElement.classList = '';
+    }
+  };
+
+  const getDataFromStorage = () => {
+    const storage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    return storage;
   };
 
   const removeFavoriteRecipe = () => {
@@ -101,19 +116,19 @@ export default function DrinkInProgress() {
   const formatIngredients = (obj, i) => {
     if (recipeInProgress.drinks[0][obj.mea]) {
       return (
-        <p data-testid={ `${i}-ingredient-name-and-measure` }>
-          <label htmlFor="ingredient" data-testid={ `${i}-ingredient-step` }>
-            <input type="checkbox" name="ingredient" id="ingredient" />
-          </label>
+
+        <label htmlFor={ obj } data-testid={ `${i}-ingredient-step` }>
+          <input type="checkbox" name={ obj } id="ingredient" onClick={ handleClick } />
+
           {' '}
           {recipeInProgress.drinks[0][obj.ing]}
           {' - '}
           {recipeInProgress.drinks[0][obj.mea]}
-        </p>
+        </label>
       );
     } if (recipeInProgress.drinks[0][obj.ing]) {
       return (
-        <p data-testid={ `${i}-ingredient-name-and-measure` }>
+        <p>
           {recipeInProgress.drinks[0][obj.ing]}
         </p>
       );
@@ -139,7 +154,7 @@ export default function DrinkInProgress() {
             <h3>Ingredientes</h3>
             {
               getIngredientsList().map((obj, i) => (
-                <div key={ i }>
+                <div key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
                   { formatIngredients(obj, i) }
                 </div>
               ))
