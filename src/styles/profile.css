@@ -1,0 +1,40 @@
+.profile {
+  filter: invert(87%) sepia(71%) saturate(1882%)
+    hue-rotate(323deg) brightness(97%) contrast(102%);
+}
+
+.email {
+  font-size: 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.links-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.links-container hr {
+  margin: 10px auto;
+  text-align: center;
+  width: 280px;
+}
+
+.links-container button {
+  background: none;
+  border: transparent;
+  border-radius: 0.4em;
+  color: var(--dark-gray);
+  font-weight: 600;
+  height: 40px;
+  margin: 10px 0;
+  text-align: left;
+  width: 220px;
+}
+
+.links-container button img {
+  margin-right: 20px;
+}

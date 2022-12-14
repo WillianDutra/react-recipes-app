@@ -74,6 +74,11 @@ export default function Header() {
       <div className="page-title">
         { pathname === '/meals' && <img src={ mealIcon } alt="meals-icon" />}
         { pathname === '/drinks' && <img src={ drinkIcon } alt="drinks-icon" />}
+        { pathname === '/profile' && <img
+          src={ profile }
+          alt="profile-icon"
+          className="profile"
+        />}
         <h1 data-testid="page-title">{ useHandleHeader() }</h1>
       </div>
       { isSearching && <SearchBar />}

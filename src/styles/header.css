@@ -28,7 +28,7 @@ header link {
 }
 
 .page-title {
-  margin: 20px 0 10px;
+  margin: 30px 0 10px;
   text-align: center;
 }
 
@@ -37,7 +37,7 @@ header link {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 0.15em;
-  margin-top: 4px;
+  margin: 4px 0;
   text-align: center;
   text-transform: uppercase;
 }

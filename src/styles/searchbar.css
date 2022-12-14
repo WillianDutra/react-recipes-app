@@ -48,6 +48,7 @@
 .filter-buttons {
   height: 90px;
   text-align: center;
+  width: 100%;
 }
 
 .filter-buttons button {
