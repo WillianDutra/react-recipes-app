@@ -5,6 +5,11 @@ import '../styles/card.css';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 
+import allIcon from '../images/filterIcons/mealAndDrinkIcon.svg';
+import mealIcon from '../images/filterIcons/allMealsFilter.svg';
+import drinkIcon from '../images/filterIcons/allDrinksFilter.svg';
+import '../styles/favoriteRecipes.css';
+
 const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
@@ -50,36 +55,44 @@ function FavoriteRecipes() {
   return (
     <>
       <Header />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ removeFilters }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-meal-btn"
-        onClick={ filterMeal }
-      >
-        Meals
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ filterDrinks }
-      >
-        Drinks
-      </button>
+      <div className="filter-favorite">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ removeFilters }
+        >
+          <img src={ allIcon } alt="all-icon" />
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-meal-btn"
+          onClick={ filterMeal }
+        >
+          <img src={ mealIcon } alt="meal-icon" />
+          Meals
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ filterDrinks }
+        >
+          <img src={ drinkIcon } alt="drink-icon" />
+          Drinks
+        </button>
+      </div>
       {favoriteStorage
         && favoriteStorage.map((el, index) => (
-          <div key={ el.id } className="card">
-            <Link to={ `/${el.type}s/${el.id}` }>
+          <div key={ el.id } className="favorite-card">
+            <Link to={ `/${el.type}s/${el.id}` } className="image-link">
               <img
                 src={ el.image }
                 alt={ el.name }
+                className="favorite-image"
                 data-testid={ `${index}-horizontal-image` }
               />
+            </Link>
+            <Link to={ `/${el.type}s/${el.id}` }>
               <p data-testid={ `${index}-horizontal-name` }>{el.name}</p>
             </Link>
 
@@ -92,24 +105,26 @@ function FavoriteRecipes() {
                 {el.alcoholicOrNot}
               </span>
             )}
-            {isTrue ? (
-              <button type="button" onClick={ () => getRoute(el) }>
+            <div className="alt-buttons">
+              {isTrue ? (
+                <button type="button" onClick={ () => getRoute(el) }>
+                  <img
+                    src={ shareIcon }
+                    alt="favorite Icon"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                  />
+                </button>
+              ) : (
+                <p>Link copied!</p>
+              )}
+              <button type="button" onClick={ () => removeFavorite(el) }>
                 <img
-                  src={ shareIcon }
+                  src={ blackHeartIcon }
                   alt="favorite Icon"
-                  data-testid={ `${index}-horizontal-share-btn` }
+                  data-testid={ `${index}-horizontal-favorite-btn` }
                 />
               </button>
-            ) : (
-              <p>Link copied!</p>
-            )}
-            <button type="button" onClick={ () => removeFavorite(el) }>
-              <img
-                src={ blackHeartIcon }
-                alt="favorite Icon"
-                data-testid={ `${index}-horizontal-favorite-btn` }
-              />
-            </button>
+            </div>
           </div>
         ))}
     </>

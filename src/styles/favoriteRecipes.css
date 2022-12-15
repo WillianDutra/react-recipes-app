@@ -1,0 +1,74 @@
+.favorite-card {
+  border: 1px solid var(--gray);
+  border-radius: 0.4em;
+  display: flex;
+  flex-flow: column wrap;
+  height: 137px;
+  margin: 20px auto;
+  width: 320px;
+}
+
+.image-link {
+  width: 165px;
+}
+
+.favorite-image {
+  border-radius: 0.4em 0 0 0.4em;
+  height: 135px;
+  width: 165px;
+}
+
+.favorite-card a {
+  text-decoration: none;
+  width: 135px;
+}
+
+.favorite-card p {
+  color: black;
+  font-weight: 600;
+  margin: 8px 16px 4px;
+}
+
+.favorite-card span {
+  color: var(--dark-gray);
+  margin-left: 20px;
+}
+
+.alt-buttons {
+  margin-left: 80px;
+}
+
+.alt-buttons button {
+  background: none;
+  border: transparent;
+  margin: 36px 0 0;
+  padding: 2px;
+}
+
+.alt-buttons button img {
+  filter: invert(87%) sepia(71%) saturate(1882%)
+    hue-rotate(323deg) brightness(97%) contrast(102%);
+  height: 24px;
+  width: 24px;
+}
+
+.filter-favorite {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.filter-favorite button {
+  background: none;
+  border: transparent;
+  color: var(--dark-gray);
+  font-size: 15px;
+  margin: 0 15px;
+  padding: 0;
+  width: 68px;
+}
+
+.filter-favorite button img {
+  height: 68px;
+  width: 68px;
+}

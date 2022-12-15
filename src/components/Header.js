@@ -7,6 +7,7 @@ import search from '../images/searchIcon.svg';
 
 import mealIcon from '../images/mealIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
+import favIcon from '../images/favoriteIcon.svg';
 import logoWithTitle from '../images/logoWithTitle.svg';
 import '../styles/header.css';
 
@@ -15,6 +16,7 @@ export default function Header() {
   const { isSearching, setIsSearching } = useContext(RecipesContext);
 
   const { pathname } = useLocation();
+  const favPath = '/favorite-recipes';
 
   const useHandleHeader = () => {
     if (pathname === '/meals') {
@@ -23,7 +25,7 @@ export default function Header() {
       return 'Drinks';
     } if (pathname === '/profile') {
       return 'Profile';
-    } if (pathname === '/favorite-recipes') {
+    } if (pathname === favPath) {
       return 'Favorite Recipes';
     } if (pathname === '/done-recipes') {
       return 'Done Recipes';
@@ -37,7 +39,7 @@ export default function Header() {
       setCanSearch(true);
     } if (pathname === '/profile') {
       setCanSearch(false);
-    } if (pathname === '/favorite-recipes') {
+    } if (pathname === favPath) {
       setCanSearch(false);
     } if (pathname === '/done-recipes') {
       setCanSearch(false);
@@ -79,6 +81,7 @@ export default function Header() {
           alt="profile-icon"
           className="profile"
         />}
+        { pathname === favPath && <img src={ favIcon } alt="fav-icon" />}
         <h1 data-testid="page-title">{ useHandleHeader() }</h1>
       </div>
       { isSearching && <SearchBar />}
