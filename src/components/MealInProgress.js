@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import RecipesContext from '../context/RecipesContext';
 import '../styles/recipeinprogress.css';
 import shareIcon from '../images/shareIcon.svg';
@@ -16,57 +16,37 @@ export default function MealInProgress() {
   const [checkedIngredients, setCheckedIngredients] = useState([]);
   const location = useLocation();
 
-  useEffect(() => {
-    // const storeX = storage.filter((e) => e.meals === recipeInProgress.meals[0].idMeal);
-    const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const id = recipeInProgress.meals[0].idMeal;
-    // const oi = storage.some((el) => el === id);
-    if (storage) {
-      const newing = {
-        drinks: { ...storage.drinks },
-        meals: { ...storage.meals,
-          [id]: checkedIngredients,
-        },
-      };
-      localStorage.setItem('inProgressRecipes', JSON.stringify(newing));
-    } else {
-      // setCheckedIngredients([...checkedIngredients]);
-
-      const newrecipe = {
-        drinks: {},
-        meals: {},
-      };
-      localStorage.setItem('inProgressRecipes', JSON.stringify(newrecipe));
-    }
-  }, [checkedIngredients]);
-
   const getRoute = () => {
     copy(`http://localhost:3000${location.pathname}`);
     setIsCopied(false);
   };
 
   const handleClick = ({ target }) => {
-    // const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    // const id = recipeInProgress.meals[0].idMeal;
+    const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const id = recipeInProgress.meals[0].idMeal;
     if (target.checked) {
       target.parentElement.classList = 'checked';
-      // if (!storage) {
-      //   const newrecipe = {
-      //     drinks: {},
-      //     meals: { [id]: [target.id] },
-      //   };
-      //   localStorage.setItem('inProgressRecipes', JSON.stringify(newrecipe));
-      // } {
-      setCheckedIngredients([...checkedIngredients, target.id]);
-      //   const newing = {
-      //     drinks: { ...storage.drinks },
-      //     meals: {
-      //       ...storage.meals,
-      //       [id]: [target.id],
-      //     },
-      //   };
-      //   localStorage.setItem('inProgressRecipes', JSON.stringify(newing));
-      // }
+      // setCheckedIngredients((prevState) => [prevState, target.id]);
+      if (!storage) {
+        setCheckedIngredients([...checkedIngredients, target.id]);
+        const newrecipe = {
+          drinks: {},
+          meals: { [id]: [target.id] },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(newrecipe));
+      } else {
+        setCheckedIngredients([...checkedIngredients, target.id]);
+        // setCheckedIngredients((prevState) => [prevState[checkedIngredients], target.id]);
+        const newing = {
+          drinks: { ...storage.drinks },
+          meals: {
+            ...storage.meals,
+            [id]: [...checkedIngredients, target.id],
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(newing));
+        // setCheckedIngredients([...checkedIngredients, target.id]);
+      }
     } else {
       target.parentElement.classList = '';
     }
