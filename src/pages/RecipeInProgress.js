@@ -23,7 +23,7 @@ export default function RecipeInProgress() {
     };
 
     getRecipeInProgress();
-  }, [location.pathname]);
+  }, [location.pathname, setRecipeInProgress]);
 
   return (
     <>
