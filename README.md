@@ -1,13 +1,41 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+## App de Receitas
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+App de receitas é uma aplicação para pesquisa e realização de receitas, podendo iniciar um passo a passo interativo da receita escolhida e também favorita-la. Gerenciar seu perfil com receitas completas, incompletas e favoritas.
+
+O projeto foi pensando em ser uma aplicação voltada para uso mobile, por tanto tem sua estilização voltada para os celulares.
+## Apredizados com este projeto
+
+- Trabalho em equipe
+- Metodologias Ágeis
+- Comunicação
+- React
+- React Hooks
+- Javascript
+- RTL
+- CSS
+- HTML
+
+
+## Instalação
+
+Caso queira instalar o projeto e dar uma olhada mais de perto.
+
+```bash
+  # Clonando o projeto
+  git clone git@github.com:WillianDutra/recipes-app.git
+  # Entrando na pasta
+  cd recipes-app
+  # Instalando as dependências
+  npm install
+  # Iniciando a aplicação
+  npm start
+  # Automaticamente a aplicação será aberta no navegador
+```
+## Quem realizou este projeto?
+- [@ArthurPelegrino](https://github.com/ArthurPelegrino)
+- [@JoaoFelipeKraemer](https://github.com/JoaoFelipeKraemer)
+- [@Marinna-Vitoriano](https://github.com/Marinna-Vitoriano)
+- [@scarlat-pereira](https://github.com/scarlat-pereira)
+- [@WillianDutra](https://github.com/WillianDutra)
+
