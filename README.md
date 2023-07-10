@@ -4,7 +4,7 @@
 App de receitas é uma aplicação para pesquisa e realização de receitas, podendo iniciar um passo a passo interativo da receita escolhida e também favorita-la. Gerenciar seu perfil com receitas completas, incompletas e favoritas.
 
 O projeto foi pensando em ser uma aplicação voltada para uso mobile, por tanto tem sua estilização voltada para os celulares.
-## 📝 Apredizados com este projeto
+## 📝 Aprendizados com este projeto
 
 - Trabalho em equipe
 - Metodologias Ágeis
